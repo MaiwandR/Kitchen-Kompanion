@@ -1,0 +1,1342 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kitchen Kompanion • Family Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        /* Color system */
+        --bg-primary: #f8fafc;
+        --bg-gradient-start: #f1f5f9;
+        --card-bg: #ffffff;
+        --text-primary: #0f172a;
+        --text-secondary: #334155;
+        --text-tertiary: #475569;
+        --border-light: #e2e8f0;
+        --border-faint: rgba(226, 232, 240, 0.6);
+
+        /* Status colors */
+        --accent: #3b82f6;
+        --accent-light: #dbeafe;
+        --accent-soft: #d6e8ff;
+        --success: #22c55e;
+        --success-light: #dcfce7;
+        --warning: #f59e0b;
+        --warning-light: #fef3c7;
+        --danger: #ef4444;
+        --danger-light: #fee2e2;
+
+        /* Family member colors */
+        --member-blue: #3b82f6;
+        --member-blue-bg: #dbeafe;
+        --member-purple: #a855f7;
+        --member-purple-bg: #f3e8ff;
+        --member-green: #22c55e;
+        --member-green-bg: #dcfce7;
+        --member-orange: #f97316;
+        --member-orange-bg: #ffedd5;
+
+        /* Spacing */
+        --space-xs: 4px;
+        --space-sm: 8px;
+        --space-md: 12px;
+        --space-lg: 16px;
+        --space-xl: 20px;
+        --space-2xl: 24px;
+
+        /* Effects */
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+
+        /* Typography */
+        --font-sans:
+          "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        --font-size-xs: 0.8125rem;
+        --font-size-sm: 0.9375rem;
+        --font-size-md: 1.05rem;
+        --font-size-lg: 1.2rem;
+
+        /* Borders */
+        --radius-md: 10px;
+        --radius-lg: 16px;
+        --radius-xl: 20px;
+        --radius-full: 9999px;
+      }
+
+      body {
+        background: linear-gradient(145deg, #e2e8f0 0%, #f1f5f9 100%);
+        font-family: var(--font-sans);
+        color: var(--text-primary);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: var(--space-lg);
+        line-height: 1.5;
+      }
+
+      /* Phone frame */
+      .phone-frame {
+        width: 480px;
+        max-width: 100%;
+        background: #1e293b;
+        border-radius: 42px;
+        padding: 12px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+
+      .screen {
+        background: var(--bg-primary);
+        border-radius: 32px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 940px;
+        position: relative;
+      }
+
+      .screen.screen-scroll-enabled {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+
+      /* Header */
+      .header {
+        padding: var(--space-lg) var(--space-lg) var(--space-md);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: white;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .brand h1 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+        line-height: 1.2;
+      }
+
+      .brand .household-badge {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 2px;
+      }
+
+      .household-badge span {
+        background: var(--accent-soft);
+        color: var(--accent);
+        padding: 3px 9px;
+        border-radius: var(--radius-full);
+        font-weight: 600;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-md);
+        background: var(--bg-primary);
+        border: 1px solid var(--border-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: var(--text-secondary);
+      }
+
+      .alert-badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        width: 16px;
+        height: 16px;
+        background: var(--danger);
+        border: 2px solid white;
+        border-radius: var(--radius-full);
+        font-size: 10px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      .bell-icon {
+        width: 18px;
+        height: 18px;
+        position: relative;
+      }
+
+      .bell-icon::before {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 3px;
+        width: 12px;
+        height: 12px;
+        border: 2px solid currentColor;
+        border-bottom: none;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .bell-icon::after {
+        content: "";
+        position: absolute;
+        bottom: 1px;
+        left: 6px;
+        width: 6px;
+        height: 2px;
+        background: currentColor;
+        border-radius: 2px;
+      }
+
+      i.bi.bi-bell {
+        font-size: 20px;
+      }
+
+      .avatar-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-full);
+        background: linear-gradient(135deg, #f59e0b, #f97316);
+        border: 2px solid white;
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: var(--font-size-sm);
+      }
+
+      /* Main content */
+      .main-content {
+        flex: 1 0 auto;
+        padding: 0 var(--space-lg) 100px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+        min-height: 0;
+      }
+
+      /* Welcome section */
+      .welcome-section {
+        margin-top: var(--space-md);
+      }
+
+      .welcome-title {
+        font-size: var(--font-size-lg);
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .welcome-subtitle {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      /* Card styles */
+      .card {
+        background: var(--card-bg);
+        border-radius: var(--radius-lg);
+        border: 2px solid var(--border-light);
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
+      }
+
+      .card-header {
+        padding: var(--space-md) var(--space-lg);
+        background: var(--bg-primary);
+        border-bottom: 3px solid var(--border-light);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .card-header h2 {
+        font-size: var(--font-size-md);
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .household-indicator {
+        background: var(--accent);
+        color: white;
+        font-size: 14px;
+        padding: 3px 8px;
+        border-radius: var(--radius-full);
+        font-weight: 600;
+        display: inline-block;
+        white-space: nowrap;
+      }
+
+      .expand-btn {
+        background: none;
+        border: none;
+        color: var(--accent);
+        font-size: var(--font-size-sm);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        cursor: default;
+        padding: 4px 8px;
+        border-radius: var(--radius-full);
+        background: #e6f2fb;
+      }
+
+      .chevron {
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg);
+        margin-top: -2px;
+      }
+
+      .chevron.up {
+        transform: rotate(-135deg);
+        margin-top: 2px;
+      }
+
+      /* Family member list (expanded view - showing 2 members) */
+      .family-list {
+        padding: var(--space-md);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+
+      .family-member {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-sm);
+        background: var(--bg-primary);
+        border-radius: var(--radius-md);
+        border: 2px solid var(--border-light);
+        margin-top: 10px;
+      }
+
+      .member-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: var(--font-size-sm);
+        flex-shrink: 0;
+      }
+
+      .member-avatar.adult {
+        background: var(--member-blue-bg);
+        color: var(--member-blue);
+      }
+      .member-avatar.teen {
+        background: var(--member-purple-bg);
+        color: var(--member-purple);
+      }
+      .member-avatar.child {
+        background: var(--member-green-bg);
+        color: var(--member-green);
+      }
+      .member-avatar.senior {
+        background: var(--member-orange-bg);
+        color: var(--member-orange);
+      }
+
+      .member-details {
+        flex: 1;
+      }
+
+      .member-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 6px;
+      }
+
+      .member-name {
+        font-weight: 600;
+        font-size: var(--font-size-sm);
+      }
+
+      .member-age {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      .member-stats {
+        display: flex;
+        gap: var(--space-sm);
+        font-size: var(--font-size-sm);
+        margin-bottom: 6px;
+        flex-wrap: wrap;
+      }
+
+      .stat {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .stat-value {
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-size: var(--font-size-sm);
+      }
+
+      /* Progress rows */
+      .progress-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-xs);
+      }
+
+      .progress-bar {
+        height: 6px;
+        background: #eef2f6;
+        border-radius: var(--radius-full);
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        border-radius: var(--radius-full);
+      }
+
+      .progress-fill.blue {
+        background: linear-gradient(90deg, var(--member-blue), #93c5fd);
+      }
+      .progress-fill.purple {
+        background: linear-gradient(90deg, var(--member-purple), #d8b4fe);
+      }
+      .progress-fill.green {
+        background: linear-gradient(90deg, var(--member-green), #86efac);
+      }
+      .progress-fill.orange {
+        background: linear-gradient(90deg, var(--member-orange), #fdba74);
+      }
+
+      /* See all members pill */
+      .see-all-members {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xs);
+        padding: var(--space-sm) var(--space-md);
+        background: var(--bg-primary);
+        border: 3px dashed var(--border-light);
+        border-radius: var(--radius-full);
+        margin: 0 var(--space-md) var(--space-md);
+        color: var(--accent);
+        font-size: var(--font-size-sm);
+        font-weight: 600;
+      }
+
+      .member-avatars {
+        display: flex;
+        align-items: center;
+      }
+
+      .mini-avatar {
+        width: 24px;
+        height: 24px;
+        border-radius: var(--radius-full);
+        background: var(--accent-soft);
+        border: 2px solid white;
+        margin-left: -4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .mini-avatar:first-child {
+        margin-left: 0;
+      }
+
+      .family-member.extra-member {
+        display: none;
+      }
+
+      .nutrition-section.show-all .family-member.extra-member {
+        display: flex;
+      }
+
+      .see-all-members {
+        cursor: pointer;
+        user-select: none;
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .see-all-members:hover {
+        background: #eef6ff;
+        border-color: #bfd8ff;
+      }
+
+      .see-all-members .toggle-label-alt {
+        display: none;
+      }
+
+      .nutrition-section.show-all .see-all-members .toggle-label-default,
+      .nutrition-section.show-all .see-all-members .member-avatars {
+        display: none;
+      }
+
+      .nutrition-section.show-all .see-all-members .toggle-label-alt {
+        display: inline;
+      }
+
+      .see-all-members .toggle-label-default,
+      .see-all-members .toggle-label-alt {
+        pointer-events: none;
+      }
+
+      .nutrition-section.show-all .see-all-members .chevron {
+        transform: rotate(-135deg) !important;
+        margin-top: 2px !important;
+      }
+
+      /* Alert chip (simplified) */
+      .alert-chip {
+        background: var(--danger-light);
+        border: 0.9px solid #991b1b;
+        border-radius: var(--radius-full);
+        padding: var(--space-xs) var(--space-md);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: var(--font-size-sm);
+        color: #991b1b;
+        width: fit-content;
+        font-weight: 600;
+      }
+
+      .alert-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--danger);
+        border-radius: var(--radius-full);
+      }
+
+      /* Meal card */
+      .meal-card {
+        padding: var(--space-lg);
+      }
+
+      .meal-container {
+        display: flex;
+        gap: var(--space-lg);
+      }
+
+      .meal-thumbnail {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border: 1px solid var(--border-light);
+      }
+
+      .plate-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-full);
+        border: 2px solid var(--text-secondary);
+        opacity: 0.8;
+      }
+
+      .meal-details {
+        flex: 1;
+      }
+
+      .meal-name {
+        font-weight: 700;
+        font-size: var(--font-size-md);
+        margin-bottom: 4px;
+      }
+
+      .meal-meta {
+        display: flex;
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+        font-weight: 500;
+        margin-bottom: var(--space-sm);
+        flex-wrap: wrap;
+      }
+
+      .meal-meta > span {
+        margin-right: 15px;
+      }
+
+      .emo-size {
+        font-size: 20px;
+      }
+
+      .family-fit {
+        display: flex;
+        gap: var(--space-xs);
+        margin-top: var(--space-xs);
+      }
+
+      .fit-indicator {
+        width: 24px;
+        height: 24px;
+        border-radius: var(--radius-full);
+        background: var(--success-light);
+        color: #166534;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 600;
+        border: 0.5px solid #1f8e48;
+      }
+
+      .fit-indicator.warning {
+        background: var(--warning-light);
+        border: 0.5px solid #bc7b0a;
+        color: #92400e;
+      }
+
+      .fit-indicator.emergancy {
+        background: red;
+        color: #92400e;
+      }
+
+      /* Button */
+      .btn-primary {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: var(--space-md);
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: var(--font-size-sm);
+        width: 100%;
+        margin-top: var(--space-md);
+        cursor: default;
+      }
+
+      /* Cooking screen */
+      .cooking-screen {
+        position: absolute;
+        inset: 0;
+        background: var(--bg-primary);
+        z-index: 20;
+        display: none;
+        flex-direction: column;
+        padding: var(--space-lg);
+        overflow-y: auto;
+        padding-bottom: 120px;
+      }
+
+      .cooking-screen.active {
+        display: flex;
+      }
+
+      .cooking-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-lg);
+      }
+
+      .back-btn {
+        border: 1px solid var(--border-light);
+        background: white;
+        color: var(--text-primary);
+        padding: 10px 14px;
+        border-radius: var(--radius-full);
+        box-shadow: var(--shadow-sm);
+        cursor: pointer;
+        font: inherit;
+      }
+
+      .cooking-badge {
+        background: var(--accent-soft);
+        color: var(--accent);
+        padding: 6px 12px;
+        border-radius: var(--radius-full);
+        font: inherit;
+      }
+
+      .cooking-hero {
+        background: white;
+        border: 2px solid var(--border-light);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        padding: var(--space-lg);
+        display: flex;
+        gap: var(--space-lg);
+        margin-bottom: var(--space-lg);
+      }
+
+      .cooking-image-holder {
+        width: 110px;
+        height: 110px;
+        border-radius: 22px;
+        background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
+        border: 2px dashed #94a3b8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        flex-shrink: 0;
+        text-align: center;
+        padding: 10px;
+      }
+
+      .cooking-hero-text h2 {
+        margin-bottom: 4px;
+      }
+
+      .cooking-hero-text p {
+        color: var(--text-secondary);
+        margin-bottom: var(--space-md);
+      }
+
+      .cooking-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        color: var(--text-secondary);
+      }
+
+      .cooking-card {
+        background: white;
+        border: 2px solid var(--border-light);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        padding: var(--space-lg);
+        margin-bottom: var(--space-lg);
+      }
+
+      .cooking-card h3 {
+        margin-bottom: var(--space-md);
+      }
+
+      .ingredient-list,
+      .step-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .ingredient-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-light);
+        border-radius: 12px;
+        padding: 12px 14px;
+        gap: 12px;
+      }
+
+      .ingredient-name {
+        font-weight: 600;
+      }
+
+      .ingredient-amount {
+        color: var(--text-secondary);
+      }
+
+      .step-item {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-light);
+        border-radius: 14px;
+        padding: 14px;
+      }
+
+      .step-number {
+        width: 30px;
+        height: 30px;
+        border-radius: 9999px;
+        background: var(--accent);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .step-text strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .step-text p {
+        color: var(--text-secondary);
+        margin: 0;
+      }
+
+      /* Navigation */
+      .bottom-nav {
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        border-top: 1px solid var(--border-light);
+        padding: var(--space-sm) var(--space-lg) var(--space-lg);
+        display: flex;
+        justify-content: space-around;
+        box-shadow: -1px -2px 25px 0px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: -1px -2px 25px 0px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: -1px -2px 25px 0px rgba(0, 0, 0, 0.1);
+      }
+
+      i {
+        font-style: normal;
+      }
+
+      .icon-rav {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+      }
+
+      i.icon-nav.home {
+        font-size: 40px;
+      }
+
+      .nav-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-xs);
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: var(--space-sm);
+        border-radius: var(--radius-md);
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: 500;
+        text-decoration: none;
+      }
+
+      .nav-item.active {
+        color: var(--accent);
+      }
+
+      .nav-icon {
+        width: 24px;
+        height: 24px;
+        position: relative;
+      }
+
+      .nav-icon.home::before {
+        content: "🏠";
+        font-size: 20px;
+      }
+      .nav-icon.recipes::before {
+        content: "📖";
+        font-size: 20px;
+      }
+      .nav-icon.inventory::before {
+        content: "📦";
+        font-size: 20px;
+      }
+      .nav-icon.account::before {
+        content: "👤";
+        font-size: 20px;
+      }
+
+      /* For screenshot - showing expanded view with 2 members */
+      .nutrition-section.expanded .family-list {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone-frame">
+      <div class="screen">
+        <!-- Header with simplified alert icon -->
+        <header class="header">
+          <div class="brand">
+            <h1>Kitchen Kompanion</h1>
+            <div class="household-badge">
+              <span>4 person household</span>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <!-- Simplified alert as icon only -->
+            <div class="icon-btn" aria-label="Alerts">
+              <!--<div class="bell-icon"></div>-->
+              <i class="bi bi-bell"></i>
+              <div class="alert-badge">1</div>
+            </div>
+
+            <!-- Family avatar -->
+            <div class="avatar-btn" aria-label="Family account">F</div>
+          </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+          <!-- Welcome -->
+          <div class="welcome-section">
+            <h2 class="welcome-title">Good evening, family! 👋</h2>
+            <p class="welcome-subtitle">Here's your household overview</p>
+          </div>
+
+          <!-- Nutrition Section - Showing 2 family members with "see all" -->
+          <section
+            class="card nutrition-section expanded"
+            id="nutritionSection"
+            aria-labelledby="nutrition-heading"
+          >
+            <div class="card-header">
+              <div id="nutrition-heading">
+                <h2>🍎 Family nutrition <i class="bi bi-info-circle"></i></h2>
+              </div>
+
+              <!-- Expand button (static - showing expanded state) -->
+              <!--<div class="expand-btn">
+              <span>collapse</span>
+              <span class="chevron up"></span>
+            </div>-->
+              <span class="household-indicator">4 members</span>
+            </div>
+
+            <!-- EXPANDED VIEW: Showing first 2 family members -->
+            <div class="expanded-view">
+              <div class="family-list">
+                <!-- Dad -->
+                <div class="family-member">
+                  <div class="member-avatar adult">👨</div>
+                  <div class="member-details">
+                    <div class="member-header">
+                      <span class="member-name">David (Dad)</span>
+                      <span class="member-age">45 • 2,200 cal</span>
+                    </div>
+                    <div class="member-stats">
+                      <div class="stat">
+                        <span class="stat-value">68%</span>
+                        <span class="stat-label">calories</span>
+                      </div>
+                      <div class="stat">
+                        <span class="stat-value">45%</span>
+                        <span class="stat-label">protein</span>
+                      </div>
+                      <div class="stat">
+                        <span class="stat-value">72%</span>
+                        <span class="stat-label">vitamins</span>
+                      </div>
+                    </div>
+                    <!-- Individual progress bar -->
+                    <div class="progress-row">
+                      <div class="progress-bar">
+                        <div
+                          class="progress-fill blue"
+                          style="width: 68%"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Mom -->
+                <div class="family-member">
+                  <div class="member-avatar adult">👩</div>
+                  <div class="member-details">
+                    <div class="member-header">
+                      <span class="member-name">Sarah (Mom)</span>
+                      <span class="member-age">43 • 1,900 cal</span>
+                    </div>
+                    <div class="member-stats">
+                      <div class="stat">
+                        <span class="stat-value">52%</span>
+                        <span class="stat-label">calories</span>
+                      </div>
+                      <div class="stat">
+                        <span class="stat-value">38%</span>
+                        <span class="stat-label">protein</span>
+                      </div>
+                      <div class="stat">
+                        <span class="stat-value">81%</span>
+                        <span class="stat-label">vitamins</span>
+                      </div>
+                    </div>
+                    <div class="progress-row">
+                      <div class="progress-bar">
+                        <div
+                          class="progress-fill purple"
+                          style="width: 52%"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Alex -->
+                <div class="family-member extra-member">
+                  <div class="member-avatar child">👦</div>
+                  <div class="member-details">
+                    <div class="member-header">
+                      <span class="member-name">Alex</span>
+                      <span class="member-age">13 • 2,000 cal</span>
+                    </div>
+                    <div class="member-stats">
+                      <div class="stat">
+                        <span class="stat-value">74%</span>
+                        <span class="stat-label">calories</span>
+                      </div>
+                      <div class="stat">
+                        <span class="stat-value">56%</span>
+                        <span class="stat-label">protein</span>
+                      </div>
+                      <div class="stat">
+                        <span class="stat-value">67%</span>
+                        <span class="stat-label">vitamins</span>
+                      </div>
+                    </div>
+                    <div class="progress-row">
+                      <div class="progress-bar">
+                        <div
+                          class="progress-fill green"
+                          style="width: 74%"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Emma -->
+                <div class="family-member extra-member">
+                  <div class="member-avatar senior">👧</div>
+                  <div class="member-details">
+                    <div class="member-header">
+                      <span class="member-name">Emma</span>
+                      <span class="member-age">8 • 1,500 cal</span>
+                    </div>
+                    <div class="member-stats">
+                      <div class="stat">
+                        <span class="stat-value">61%</span>
+                        <span class="stat-label">calories</span>
+                      </div>
+                      <div class="stat">
+                        <span class="stat-value">41%</span>
+                        <span class="stat-label">protein</span>
+                      </div>
+                      <div class="stat">
+                        <span class="stat-value">79%</span>
+                        <span class="stat-label">vitamins</span>
+                      </div>
+                    </div>
+                    <div class="progress-row">
+                      <div class="progress-bar">
+                        <div
+                          class="progress-fill orange"
+                          style="width: 61%"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- See all members pill with avatars -->
+              <div
+                class="see-all-members"
+                id="familyToggle"
+                onclick="toggleFamilyMembers()"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+                onkeydown="
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    toggleFamilyMembers();
+                  }
+                "
+              >
+                <div class="member-avatars">
+                  <span class="mini-avatar">👦</span>
+                  <span class="mini-avatar">👧</span>
+                </div>
+                <span class="toggle-label-default">See all 4 members</span>
+                <span class="toggle-label-alt">Show fewer members</span>
+                <span
+                  class="chevron"
+                  style="transform: rotate(45deg); margin-top: 0"
+                ></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Simplified Alert - moved to a small chip -->
+          <div class="alert-chip">
+            <span class="alert-dot"></span>
+            <span>1 item expiring soon • Bacon (3 days)</span>
+          </div>
+
+          <!-- Suggested Meal Card -->
+          <section class="card">
+            <div class="card-header">
+              <h2>🍽️ Tonight's suggested meal</h2>
+              <div class="expand-btn">change</div>
+            </div>
+
+            <div class="meal-card">
+              <div class="meal-container">
+                <div class="meal-thumbnail">
+                  <div class="plate-icon"></div>
+                </div>
+
+                <div class="meal-details">
+                  <h3 class="meal-name">Steak & mashed potatoes</h3>
+
+                  <div class="meal-meta">
+                    <span><span class="emo-size">⏱️</span> 40 min</span>
+                    <span><span class="emo-size">👥</span> serves 4</span>
+                    <span
+                      ><span class="emo-size">🔥</span> 520 kcal/serving</span
+                    >
+                  </div>
+
+                  <!-- Family fit indicators -->
+                  <div class="family-fit">
+                    <div class="fit-indicator" title="Good for David">👨</div>
+                    <div class="fit-indicator" title="Good for Sarah">👩</div>
+                    <div class="fit-indicator" title="Good for Alex">👦</div>
+                    <div class="fit-indicator warning" title="Okay for Emma">
+                      👧
+                    </div>
+                  </div>
+
+                  <button
+                    class="btn-primary"
+                    type="button"
+                    onclick="openCookingScreen()"
+                  >
+                    Quick start
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <!-- Cooking Screen -->
+        <section
+          class="cooking-screen"
+          id="cookingScreen"
+          aria-labelledby="cooking-heading"
+        >
+          <div class="cooking-header">
+            <button
+              class="back-btn"
+              type="button"
+              onclick="closeCookingScreen()"
+            >
+              ← Back
+            </button>
+            <span class="cooking-badge">Cooking flow</span>
+          </div>
+
+          <div class="cooking-hero">
+            <div class="cooking-image-holder">
+              <span>Food image</span>
+            </div>
+
+            <div class="cooking-hero-text">
+              <h2 id="cooking-heading">Steak & mashed potatoes</h2>
+              <p>Tonight's guided cooking flow for your household meal.</p>
+
+              <div class="cooking-meta">
+                <span>⏱️ 40 min</span>
+                <span>👥 serves 4</span>
+                <span>🔥 520 kcal/serving</span>
+              </div>
+            </div>
+          </div>
+
+          <section class="cooking-card">
+            <h3>Ingredients needed</h3>
+            <div class="ingredient-list">
+              <div class="ingredient-item">
+                <span class="ingredient-name">Steak</span>
+                <span class="ingredient-amount">4 cuts</span>
+              </div>
+              <div class="ingredient-item">
+                <span class="ingredient-name">Potatoes</span>
+                <span class="ingredient-amount">6 medium</span>
+              </div>
+              <div class="ingredient-item">
+                <span class="ingredient-name">Butter</span>
+                <span class="ingredient-amount">4 tbsp</span>
+              </div>
+              <div class="ingredient-item">
+                <span class="ingredient-name">Milk</span>
+                <span class="ingredient-amount">1/2 cup</span>
+              </div>
+              <div class="ingredient-item">
+                <span class="ingredient-name">Salt & pepper</span>
+                <span class="ingredient-amount">to taste</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="cooking-card">
+            <h3>Steps</h3>
+            <div class="step-list">
+              <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                  <strong>Prep the ingredients</strong>
+                  <p>
+                    Wash and peel the potatoes, season the steaks, and set out
+                    the butter and milk.
+                  </p>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                  <strong>Cook the potatoes</strong>
+                  <p>
+                    Boil the potatoes until soft, then drain and mash with
+                    butter, milk, salt, and pepper.
+                  </p>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-text">
+                  <strong>Cook the steak</strong>
+                  <p>
+                    Sear the steaks in a hot pan until they reach the preferred
+                    doneness for the household.
+                  </p>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-text">
+                  <strong>Plate and serve</strong>
+                  <p>
+                    Plate the steak with mashed potatoes and serve the meal for
+                    the family.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+          <div class="icon-rav">
+            <i class="icon-nav home">🏠</i>
+            <span>Home</span>
+          </div>
+          <div class="icon-rav">
+            <i class="icon-nav home">📖</i>
+            <span>Recipes</span>
+          </div>
+          <div class="icon-rav">
+            <i class="icon-nav home">📦</i>
+            <span>Inventory</span>
+          </div>
+          <div class="icon-rav">
+            <i class="icon-nav home">👥</i>
+            <span>Family</span>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <script>
+      function openCookingScreen() {
+        document.getElementById("cookingScreen").classList.add("active");
+      }
+
+      function closeCookingScreen() {
+        document.getElementById("cookingScreen").classList.remove("active");
+      }
+
+      function toggleFamilyMembers() {
+        const nutritionSection = document.getElementById("nutritionSection");
+        const screen = document.querySelector(".screen");
+        const toggleButton = document.getElementById("familyToggle");
+        const isExpanded = nutritionSection.classList.toggle("show-all");
+
+        screen.classList.toggle("screen-scroll-enabled", isExpanded);
+        toggleButton.setAttribute("aria-expanded", String(isExpanded));
+
+        if (isExpanded) {
+          setTimeout(() => {
+            toggleButton.scrollIntoView({
+              block: "nearest",
+              behavior: "smooth",
+            });
+          }, 50);
+        } else {
+          screen.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }
+    </script>
+  </body>
+</html>
