@@ -2,6 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
     <title>Kitchen Kompanion • Family Dashboard</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
@@ -90,7 +94,7 @@
 
       /* Phone frame */
       .phone-frame {
-        width: 480px;
+        width: 640px;
         max-width: 100%;
         background: #1e293b;
         border-radius: 42px;
@@ -105,7 +109,7 @@
         overflow-y: hidden;
         display: flex;
         flex-direction: column;
-        height: 940px;
+        height: 960px;
         position: relative;
       }
 
@@ -258,6 +262,289 @@
         font-size: var(--font-size-sm);
         color: var(--text-secondary);
         font-weight: 500;
+      }
+
+      .home-card .card-header {
+        border-bottom-width: 1px;
+      }
+
+      .home-card .card-header h2 {
+        text-transform: none;
+        letter-spacing: -0.02em;
+      }
+
+      .home-card .card-header .from-recipes-link {
+        font-size: var(--font-size-sm);
+        font-weight: 600;
+        color: var(--text-tertiary);
+        background: var(--accent-light);
+        padding: 4px 10px;
+        border-radius: var(--radius-full);
+      }
+
+      .household-summary {
+        padding: var(--space-md) var(--space-lg) var(--space-lg);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+
+      .member-preview {
+        display: flex;
+        gap: var(--space-2xl);
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .member-mini {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .member-mini-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: var(--radius-full);
+        background: var(--accent-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+      }
+
+      .member-mini-name {
+        font-size: var(--font-size-md);
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+
+      .dietary-row {
+        padding-top: var(--space-xs);
+        border-top: 1px dashed var(--border-light);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-sm);
+      }
+
+      .dietary-label {
+        font-size: var(--font-size-md);
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
+
+      .dietary-value {
+        font-size: var(--font-size-md);
+        font-weight: 600;
+        color: var(--text-primary);
+        text-align: right;
+      }
+
+      .meal-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .family-fit {
+        display: flex;
+        gap: var(--space-sm);
+        margin-top: var(--space-xs);
+        margin-bottom: var(--space-md);
+      }
+
+      .fit-indicator {
+        width: 34px;
+        height: 34px;
+        border-radius: var(--radius-full);
+        background: var(--success-light);
+        color: #166534;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: 700;
+        border: 1px solid #86efac;
+      }
+
+      .fit-indicator.warning {
+        background: var(--warning-light);
+        border-color: #fde68a;
+        color: #92400e;
+      }
+
+      .btn-view-recipe {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 14px var(--space-md);
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: var(--font-size-sm);
+        width: 100%;
+        margin-top: var(--space-md);
+        cursor: pointer;
+        transition: all 0.1s ease;
+        min-height: 52px;
+      }
+
+      .btn-view-recipe:active {
+        background: #2563eb;
+        transform: scale(0.98);
+      }
+
+      .icon-btn,
+      .avatar-btn {
+        cursor: pointer;
+        transition:
+          transform 0.1s ease,
+          background 0.1s ease;
+      }
+
+      .icon-btn:active,
+      .avatar-btn:active {
+        transform: scale(0.95);
+      }
+
+      .notification-modal {
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.45);
+        backdrop-filter: blur(4px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+      }
+
+      .notification-modal.active {
+        display: flex;
+      }
+
+      .notification-container {
+        background: white;
+        border-radius: 28px;
+        width: 85%;
+        max-width: 320px;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        transform: scale(0.95);
+        transition: transform 0.2s ease;
+      }
+
+      .notification-modal.active .notification-container {
+        transform: scale(1);
+      }
+
+      .notification-header {
+        padding: var(--space-lg) var(--space-lg) var(--space-sm);
+        border-bottom: 1px solid var(--border-light);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .notification-header h3 {
+        font-size: var(--font-size-lg);
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .notification-close {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-full);
+        background: var(--bg-primary);
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+      }
+
+      .notification-close:active {
+        background: var(--border-light);
+      }
+
+      .notification-content {
+        padding: var(--space-lg);
+      }
+
+      .notification-item {
+        display: flex;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .notification-item:last-child {
+        border-bottom: none;
+      }
+
+      .notification-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-full);
+        background: var(--accent-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+
+      .notification-icon.warning {
+        background: var(--warning-light);
+      }
+
+      .notification-icon.danger {
+        background: var(--danger-light);
+      }
+
+      .notification-text {
+        flex: 1;
+      }
+
+      .notification-title {
+        font-weight: 700;
+        font-size: var(--font-size-md);
+        margin-bottom: 4px;
+      }
+
+      .notification-desc {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+      }
+
+      .notification-time {
+        font-size: var(--font-size-xs);
+        color: var(--text-tertiary);
+        margin-top: 4px;
+      }
+
+      .notification-footer {
+        padding: var(--space-md) var(--space-lg) var(--space-lg);
+        border-top: 1px solid var(--border-light);
+      }
+
+      .mark-read-btn {
+        width: 100%;
+        background: var(--accent-light);
+        border: none;
+        padding: 12px;
+        border-radius: var(--radius-full);
+        font-weight: 600;
+        font-size: var(--font-size-sm);
+        color: var(--accent);
+        cursor: pointer;
+      }
+
+      .mark-read-btn:active {
+        background: var(--accent-soft);
       }
 
       /* Card styles */
@@ -1825,15 +2112,18 @@
           </div>
 
           <div class="header-actions">
-            <!-- Simplified alert as icon only -->
-            <div class="icon-btn" aria-label="Alerts">
-              <!--<div class="bell-icon"></div>-->
+            <div class="icon-btn" id="notificationBell" aria-label="Alerts">
               <i class="bi bi-bell"></i>
-              <div class="alert-badge">1</div>
+              <div class="alert-badge">3</div>
             </div>
 
-            <!-- Family avatar -->
-            <div class="avatar-btn" aria-label="Family account">F</div>
+            <div
+              class="avatar-btn"
+              id="familyAvatarBtn"
+              aria-label="Family account"
+            >
+              F
+            </div>
           </div>
         </header>
 
@@ -1846,211 +2136,65 @@
           <!-- Welcome -->
           <div class="welcome-section">
             <h2 class="welcome-title">Good evening, family! 👋</h2>
-            <p class="welcome-subtitle">Here's your household overview</p>
+            <p class="welcome-subtitle">Your kitchen hub</p>
           </div>
 
-          <!-- Nutrition Section - Showing 2 family members with "see all" -->
-          <section
-            class="card nutrition-section expanded"
-            id="nutritionSection"
-            aria-labelledby="nutrition-heading"
-          >
+          <section class="card home-card">
             <div class="card-header">
-              <div id="nutrition-heading">
-                <h2>🍎 Family nutrition <i class="bi bi-info-circle"></i></h2>
-              </div>
-
-              <!-- Expand button (static - showing expanded state) -->
-              <!--<div class="expand-btn">
-              <span>collapse</span>
-              <span class="chevron up"></span>
-            </div>-->
-              <span class="household-indicator">4 members</span>
-            </div>
-
-            <!-- EXPANDED VIEW: Showing first 2 family members -->
-            <div class="expanded-view">
-              <div class="family-list">
-                <!-- Dad -->
-                <div class="family-member">
-                  <div class="member-avatar adult">👨</div>
-                  <div class="member-details">
-                    <div class="member-header">
-                      <span class="member-name">David (Dad)</span>
-                      <span class="member-age">45 • 2,200 cal</span>
-                    </div>
-                    <div class="member-stats">
-                      <div class="stat">
-                        <span class="stat-value">68%</span>
-                        <span class="stat-label">calories</span>
-                      </div>
-                      <div class="stat">
-                        <span class="stat-value">45%</span>
-                        <span class="stat-label">protein</span>
-                      </div>
-                      <div class="stat">
-                        <span class="stat-value">72%</span>
-                        <span class="stat-label">vitamins</span>
-                      </div>
-                    </div>
-                    <!-- Individual progress bar -->
-                    <div class="progress-row">
-                      <div class="progress-bar">
-                        <div
-                          class="progress-fill blue"
-                          style="width: 68%"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Mom -->
-                <div class="family-member">
-                  <div class="member-avatar adult">👩</div>
-                  <div class="member-details">
-                    <div class="member-header">
-                      <span class="member-name">Sarah (Mom)</span>
-                      <span class="member-age">43 • 1,900 cal</span>
-                    </div>
-                    <div class="member-stats">
-                      <div class="stat">
-                        <span class="stat-value">52%</span>
-                        <span class="stat-label">calories</span>
-                      </div>
-                      <div class="stat">
-                        <span class="stat-value">38%</span>
-                        <span class="stat-label">protein</span>
-                      </div>
-                      <div class="stat">
-                        <span class="stat-value">81%</span>
-                        <span class="stat-label">vitamins</span>
-                      </div>
-                    </div>
-                    <div class="progress-row">
-                      <div class="progress-bar">
-                        <div
-                          class="progress-fill purple"
-                          style="width: 52%"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Alex -->
-                <div class="family-member extra-member">
-                  <div class="member-avatar child">👦</div>
-                  <div class="member-details">
-                    <div class="member-header">
-                      <span class="member-name">Alex</span>
-                      <span class="member-age">13 • 2,000 cal</span>
-                    </div>
-                    <div class="member-stats">
-                      <div class="stat">
-                        <span class="stat-value">74%</span>
-                        <span class="stat-label">calories</span>
-                      </div>
-                      <div class="stat">
-                        <span class="stat-value">56%</span>
-                        <span class="stat-label">protein</span>
-                      </div>
-                      <div class="stat">
-                        <span class="stat-value">67%</span>
-                        <span class="stat-label">vitamins</span>
-                      </div>
-                    </div>
-                    <div class="progress-row">
-                      <div class="progress-bar">
-                        <div
-                          class="progress-fill green"
-                          style="width: 74%"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Emma -->
-                <div class="family-member extra-member">
-                  <div class="member-avatar senior">👧</div>
-                  <div class="member-details">
-                    <div class="member-header">
-                      <span class="member-name">Emma</span>
-                      <span class="member-age">8 • 1,500 cal</span>
-                    </div>
-                    <div class="member-stats">
-                      <div class="stat">
-                        <span class="stat-value">61%</span>
-                        <span class="stat-label">calories</span>
-                      </div>
-                      <div class="stat">
-                        <span class="stat-value">41%</span>
-                        <span class="stat-label">protein</span>
-                      </div>
-                      <div class="stat">
-                        <span class="stat-value">79%</span>
-                        <span class="stat-label">vitamins</span>
-                      </div>
-                    </div>
-                    <div class="progress-row">
-                      <div class="progress-bar">
-                        <div
-                          class="progress-fill orange"
-                          style="width: 61%"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- See all members pill with avatars -->
-              <div
-                class="see-all-members"
-                id="familyToggle"
-                onclick="toggleFamilyMembers()"
-                role="button"
-                tabindex="0"
-                aria-expanded="false"
-                onkeydown="
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    toggleFamilyMembers();
-                  }
+              <h2>🏠 Household</h2>
+              <span
+                style="
+                  font-size: var(--font-size-md);
+                  color: var(--text-secondary);
+                  font-weight: 600;
                 "
               >
-                <div class="member-avatars">
-                  <span class="mini-avatar">👦</span>
-                  <span class="mini-avatar">👧</span>
+                4 members
+              </span>
+            </div>
+            <div class="household-summary">
+              <div class="member-preview">
+                <div class="member-mini">
+                  <div class="member-mini-avatar">👨</div>
+                  <span class="member-mini-name">David</span>
                 </div>
-                <span class="toggle-label-default">See all 4 members</span>
-                <span class="toggle-label-alt">Show fewer members</span>
-                <span
-                  class="chevron"
-                  style="transform: rotate(45deg); margin-top: 0"
-                ></span>
+                <div class="member-mini">
+                  <div class="member-mini-avatar">👩</div>
+                  <span class="member-mini-name">Sarah</span>
+                </div>
+                <div class="member-mini">
+                  <div class="member-mini-avatar">👦</div>
+                  <span class="member-mini-name">Alex</span>
+                </div>
+                <div class="member-mini">
+                  <div class="member-mini-avatar">👧</div>
+                  <span class="member-mini-name">Emma</span>
+                </div>
+              </div>
+              <div class="dietary-row">
+                <span class="dietary-label">Dietary preferences</span>
+                <span class="dietary-value">None • balanced meals</span>
               </div>
             </div>
           </section>
 
-          <!-- Simplified Alert - moved to a small chip -->
+          <!-- Alert Chip - visual only -->
           <div class="alert-chip">
             <span class="alert-dot"></span>
-            <span>1 item expiring soon • Bacon (3 days)</span>
+            <span>⚠️ 1 item expiring soon • Bacon (3 days)</span>
           </div>
 
           <!-- Suggested Meal Card -->
-          <section class="card">
+          <section class="card home-card">
             <div class="card-header">
               <h2>🍽️ Tonight's suggested meal</h2>
-              <div class="expand-btn">change</div>
+              <span class="from-recipes-link">from Recipes</span>
             </div>
 
             <div class="meal-card">
               <div class="meal-container">
                 <div class="meal-thumbnail">
-                  <div class="plate-icon"></div>
+                  <img src="steak.jpeg" alt="Steak & mashed potatoes" />
                 </div>
 
                 <div class="meal-details">
@@ -2059,12 +2203,9 @@
                   <div class="meal-meta">
                     <span><span class="emo-size">⏱️</span> 40 min</span>
                     <span><span class="emo-size">👥</span> serves 4</span>
-                    <span
-                      ><span class="emo-size">🔥</span> 520 kcal/serving</span
-                    >
+                    <span><span class="emo-size">🔥</span> 520 kcal</span>
                   </div>
 
-                  <!-- Family fit indicators -->
                   <div class="family-fit">
                     <div class="fit-indicator" title="Good for David">👨</div>
                     <div class="fit-indicator" title="Good for Sarah">👩</div>
@@ -2075,11 +2216,11 @@
                   </div>
 
                   <button
-                    class="btn-primary"
+                    class="btn-view-recipe"
+                    id="viewInRecipesBtn"
                     type="button"
-                    onclick="openCookingScreen()"
                   >
-                    Quick start
+                    View in Recipes →
                   </button>
                 </div>
               </div>
@@ -2236,7 +2377,11 @@
               </button>
 
               <div class="shopping-add-panel" id="shoppingAddPanel">
-                <form class="inventory-form" id="shoppingAddForm" style="padding: 0">
+                <form
+                  class="inventory-form"
+                  id="shoppingAddForm"
+                  style="padding: 0"
+                >
                   <input
                     class="input-control"
                     id="shoppingAddName"
@@ -2271,7 +2416,11 @@
                       type="text"
                       placeholder="Category"
                     />
-                    <select class="input-control" id="shoppingAddStorage" required>
+                    <select
+                      class="input-control"
+                      id="shoppingAddStorage"
+                      required
+                    >
                       <option value="room">Room temp</option>
                       <option value="fresh">Keep fresh</option>
                       <option value="freezer">Freezer</option>
@@ -2280,8 +2429,16 @@
                   </div>
 
                   <div class="inventory-form-actions">
-                    <button class="btn-primary" type="submit">Add pickup</button>
-                    <button class="btn-secondary" type="button" id="shoppingAddCancelBtn">Cancel</button>
+                    <button class="btn-primary" type="submit">
+                      Add pickup
+                    </button>
+                    <button
+                      class="btn-secondary"
+                      type="button"
+                      id="shoppingAddCancelBtn"
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </form>
               </div>
@@ -2643,6 +2800,64 @@
                 onclick="deleteMember()"
               >
                 &#x1F5D1;&#xFE0F; Remove member
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="notificationModal"
+          class="notification-modal"
+          aria-modal="true"
+          role="dialog"
+          aria-label="Notifications"
+        >
+          <div class="notification-container">
+            <div class="notification-header">
+              <h3>🔔 Notifications</h3>
+              <button
+                class="notification-close"
+                id="closeModalBtn"
+                type="button"
+              >
+                ✕
+              </button>
+            </div>
+            <div class="notification-content">
+              <div class="notification-item">
+                <div class="notification-icon danger">⚠️</div>
+                <div class="notification-text">
+                  <div class="notification-title">Food expiring soon</div>
+                  <div class="notification-desc">
+                    Bacon expires in 3 days. Add to shopping list?
+                  </div>
+                  <div class="notification-time">2 hours ago</div>
+                </div>
+              </div>
+              <div class="notification-item">
+                <div class="notification-icon">👤</div>
+                <div class="notification-text">
+                  <div class="notification-title">New family member joined</div>
+                  <div class="notification-desc">
+                    Emma has been added to your household.
+                  </div>
+                  <div class="notification-time">Yesterday</div>
+                </div>
+              </div>
+              <div class="notification-item">
+                <div class="notification-icon warning">🛒</div>
+                <div class="notification-text">
+                  <div class="notification-title">Shopping list reminder</div>
+                  <div class="notification-desc">
+                    You're almost out of milk and eggs.
+                  </div>
+                  <div class="notification-time">2 days ago</div>
+                </div>
+              </div>
+            </div>
+            <div class="notification-footer">
+              <button class="mark-read-btn" id="markReadBtn" type="button">
+                Mark all as read
               </button>
             </div>
           </div>
@@ -3497,7 +3712,10 @@
           const storage = document.getElementById("shoppingAddStorage").value;
 
           if (!name || !unit || !Number.isFinite(quantity) || quantity <= 0) {
-            showStatus("Enter a valid pickup item, quantity, and unit.", "warning");
+            showStatus(
+              "Enter a valid pickup item, quantity, and unit.",
+              "warning",
+            );
             return;
           }
 
@@ -3533,7 +3751,9 @@
           const deleteId = deleteTarget.dataset.shoppingDeleteId;
           if (!deleteId) return;
 
-          const selected = appState.shoppingList.find((item) => item.id === deleteId);
+          const selected = appState.shoppingList.find(
+            (item) => item.id === deleteId,
+          );
           appState.shoppingList = appState.shoppingList.filter(
             (item) => item.id !== deleteId,
           );
@@ -3690,6 +3910,74 @@
         if (activeNode) activeNode.classList.add("active-tab");
         updateScreenScrollState(tab);
       }
+
+      const notificationBell = document.getElementById("notificationBell");
+      const notificationModal = document.getElementById("notificationModal");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+      const markReadBtn = document.getElementById("markReadBtn");
+      const alertBadge = document.querySelector(".alert-badge");
+      const viewInRecipesBtn = document.getElementById("viewInRecipesBtn");
+      const familyAvatarBtn = document.getElementById("familyAvatarBtn");
+
+      function closeNotificationModal() {
+        if (!notificationModal) return;
+        notificationModal.classList.remove("active");
+      }
+
+      if (notificationBell && notificationModal) {
+        notificationBell.addEventListener("click", () => {
+          notificationModal.classList.add("active");
+        });
+      }
+
+      if (closeModalBtn) {
+        closeModalBtn.addEventListener("click", closeNotificationModal);
+      }
+
+      if (notificationModal) {
+        notificationModal.addEventListener("click", (event) => {
+          if (event.target === notificationModal) {
+            closeNotificationModal();
+          }
+        });
+      }
+
+      if (markReadBtn) {
+        markReadBtn.addEventListener("click", () => {
+          if (alertBadge) {
+            alertBadge.style.display = "none";
+          }
+          closeNotificationModal();
+
+          const tempFeedback = document.createElement("div");
+          tempFeedback.textContent = "✓ All notifications marked as read";
+          tempFeedback.style.position = "absolute";
+          tempFeedback.style.bottom = "100px";
+          tempFeedback.style.left = "50%";
+          tempFeedback.style.transform = "translateX(-50%)";
+          tempFeedback.style.background = "#1f2937";
+          tempFeedback.style.color = "white";
+          tempFeedback.style.padding = "10px 20px";
+          tempFeedback.style.borderRadius = "30px";
+          tempFeedback.style.fontSize = "14px";
+          tempFeedback.style.zIndex = "200";
+          document.querySelector(".phone-frame")?.appendChild(tempFeedback);
+          setTimeout(() => tempFeedback.remove(), 2000);
+        });
+      }
+
+      if (viewInRecipesBtn) {
+        viewInRecipesBtn.addEventListener("click", () => {
+          switchTab("recipes");
+        });
+      }
+
+      if (familyAvatarBtn) {
+        familyAvatarBtn.addEventListener("click", () => {
+          switchTab("family");
+        });
+      }
+
       document
         .getElementById("memberModal")
         .addEventListener("click", function (e) {
