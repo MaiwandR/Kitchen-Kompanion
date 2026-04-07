@@ -821,6 +821,467 @@
         margin: 0;
       }
 
+      .tab-panel {
+        display: none;
+      }
+
+      .tab-panel.active {
+        display: flex;
+      }
+
+      .inventory-hero {
+        margin-top: var(--space-md);
+      }
+
+      .inventory-subtitle {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+      }
+
+      .inventory-toolbar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: var(--space-sm);
+        align-items: center;
+      }
+
+      .inventory-search {
+        width: 100%;
+        border: 1px solid var(--border-light);
+        border-radius: 12px;
+        background: white;
+        padding: 10px 12px;
+        font: inherit;
+      }
+
+      .inventory-add-btn {
+        border: none;
+        background: var(--accent);
+        color: white;
+        border-radius: 12px;
+        padding: 10px 14px;
+        font-weight: 700;
+        font-size: var(--font-size-sm);
+        cursor: pointer;
+      }
+
+      .inventory-filters {
+        display: flex;
+        gap: var(--space-xs);
+        flex-wrap: wrap;
+      }
+
+      .filter-chip {
+        border: 1px solid var(--border-light);
+        background: white;
+        color: var(--text-secondary);
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .filter-chip.active {
+        border-color: #bfdbfe;
+        background: #e6f2ff;
+        color: #1d4ed8;
+      }
+
+      .inventory-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-sm);
+      }
+
+      .metric-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+      }
+
+      .metric-card.metric-total {
+        background: #eff6ff;
+        border-color: #bfdbfe;
+      }
+
+      .metric-card.metric-low {
+        background: #fff7ed;
+        border-color: #fed7aa;
+      }
+
+      .shopping-pickups-header {
+        background: #f5f3ff;
+        border-bottom-color: #ddd6fe;
+      }
+
+      .shopping-pickups-header h2 {
+        color: #4c1d95;
+      }
+
+      .metric-label {
+        display: block;
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+      }
+
+      .metric-value {
+        font-size: var(--font-size-lg);
+        font-weight: 700;
+      }
+
+      .inventory-form {
+        padding: var(--space-lg);
+        display: grid;
+        gap: var(--space-sm);
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 0.8fr 0.9fr;
+        gap: var(--space-sm);
+      }
+
+      .input-control {
+        width: 100%;
+        border: 1px solid var(--border-light);
+        border-radius: 10px;
+        padding: 10px 12px;
+        font: inherit;
+        color: var(--text-primary);
+        background: white;
+      }
+
+      .inventory-form-actions {
+        display: flex;
+        gap: var(--space-sm);
+      }
+
+      .btn-secondary {
+        background: white;
+        color: var(--text-primary);
+        border: 1px solid var(--border-light);
+        padding: var(--space-md);
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: var(--font-size-sm);
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .inventory-groups {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+      }
+
+      .inventory-item-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .inventory-item {
+        border: 1px solid var(--border-light);
+        border-radius: 10px;
+        padding: 8px 10px;
+        display: block;
+        background: #f8fafc;
+      }
+
+      .inventory-item-main {
+        min-width: 0;
+      }
+
+      .inventory-item-name {
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .inventory-item-meta {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .inventory-status-row {
+        display: flex;
+        gap: 6px;
+        margin-top: 4px;
+        flex-wrap: wrap;
+      }
+
+      .mini-badge {
+        background: #e2e8f0;
+        color: #334155;
+        border-radius: 999px;
+        padding: 2px 8px;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+
+      .mini-badge.low {
+        background: #fff7ed;
+        color: #9a3412;
+        border: 1px solid #fed7aa;
+      }
+
+      .inventory-item-actions {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        margin-top: 8px;
+      }
+
+      .qty-stepper {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--border-light);
+        background: white;
+        border-radius: 999px;
+      }
+
+      .stepper-btn {
+        border: none;
+        background: transparent;
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+        color: var(--text-primary);
+        cursor: pointer;
+      }
+
+      .stepper-value {
+        min-width: 26px;
+        text-align: center;
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+
+      .inventory-editor {
+        display: none;
+      }
+
+      .inventory-editor.show {
+        display: block;
+      }
+
+      .inventory-inline-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+      }
+
+      .inventory-delete {
+        width: 100%;
+        border: 1px solid #fecaca;
+        background: #fff1f2;
+        color: #b91c1c;
+        border-radius: 10px;
+        padding: 10px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .inventory-add-panel {
+        display: none;
+        border: 1px solid var(--border-light);
+        border-radius: 12px;
+        padding: var(--space-sm);
+        background: white;
+      }
+
+      .inventory-add-panel.show {
+        display: block;
+      }
+
+      .inventory-inline-actions {
+        display: flex;
+        gap: 6px;
+      }
+
+      .inline-edit-area {
+        display: none;
+        margin-top: 8px;
+        border-top: 1px dashed var(--border-light);
+        padding-top: 8px;
+        width: 100%;
+      }
+
+      .inline-edit-area.show {
+        display: block;
+      }
+
+      .icon-pencil-btn {
+        border: none;
+        background: transparent;
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .pickup-btn {
+        border: none;
+        background: transparent;
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .action-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .chip-btn {
+        border: 1px solid var(--border-light);
+        background: white;
+        color: var(--text-primary);
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .chip-btn.danger {
+        color: #b91c1c;
+        border-color: #fecaca;
+        background: #fff1f2;
+      }
+
+      .empty-state {
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+      }
+
+      .shopping-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        padding: var(--space-lg);
+      }
+
+      .shopping-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-sm);
+        background: var(--bg-primary);
+        border: 1px solid var(--border-light);
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+
+      .shopping-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-sm);
+        width: 100%;
+      }
+
+      .shopping-item label {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        width: auto;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .shopping-item-main {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .shopping-add-toggle {
+        border: 1px solid var(--border-light);
+        background: white;
+        color: var(--text-primary);
+        border-radius: 10px;
+        padding: 8px 10px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .shopping-add-panel {
+        display: none;
+        border: 1px solid var(--border-light);
+        border-radius: 12px;
+        padding: var(--space-sm);
+        background: white;
+      }
+
+      .shopping-add-panel.show {
+        display: block;
+      }
+
+      .shopping-delete-btn {
+        border: none;
+        background: transparent;
+        color: #b91c1c;
+        font-size: 1.1rem;
+        font-weight: 700;
+        width: 28px;
+        height: 28px;
+        border-radius: 999px;
+        cursor: pointer;
+        margin-left: auto;
+      }
+
+      .shopping-item.checked {
+        opacity: 0.65;
+      }
+
+      .shopping-item.checked strong {
+        text-decoration: line-through;
+      }
+
+      .status-banner {
+        margin: 0 var(--space-lg);
+        margin-top: var(--space-md);
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-size: var(--font-size-sm);
+        font-weight: 600;
+        display: none;
+      }
+
+      .status-banner.show {
+        display: block;
+      }
+
+      .status-banner.info {
+        background: #e6f2ff;
+        color: #1d4ed8;
+        border: 1px solid #bfdbfe;
+      }
+
+      .status-banner.success {
+        background: #ecfdf3;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+      }
+
+      .status-banner.warning {
+        background: #fffbeb;
+        color: #92400e;
+        border: 1px solid #fde68a;
+      }
+
       /* Navigation */
       .bottom-nav {
         position: sticky;
@@ -847,6 +1308,19 @@
         display: flex;
         flex-direction: column;
         font-weight: bold;
+      }
+
+      .nav-item-tab {
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        border-radius: var(--radius-md);
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .nav-item-tab.active {
+        color: var(--accent);
       }
 
       i.icon-nav.home {
@@ -1177,7 +1651,7 @@
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        box-shadow: 0 -8px 30px rgba(0,0,0,0.15);
+        box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
       }
 
       .modal-header {
@@ -1285,7 +1759,9 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: border-color 0.15s, background 0.15s;
+        transition:
+          border-color 0.15s,
+          background 0.15s;
       }
       .avatar-opt.selected {
         border-color: var(--accent);
@@ -1309,7 +1785,10 @@
         font-family: var(--font-sans);
         color: var(--text-secondary);
         cursor: pointer;
-        transition: border-color 0.15s, background 0.15s, color 0.15s;
+        transition:
+          border-color 0.15s,
+          background 0.15s,
+          color 0.15s;
       }
       .role-opt.selected {
         border-color: var(--accent);
@@ -1359,7 +1838,11 @@
         </header>
 
         <!-- Main Content -->
-        <main class="main-content" id="mainContent">
+        <main
+          class="main-content tab-panel active"
+          id="mainContent"
+          data-tab-panel="home"
+        >
           <!-- Welcome -->
           <div class="welcome-section">
             <h2 class="welcome-title">Good evening, family! 👋</h2>
@@ -1604,6 +2087,224 @@
           </section>
         </main>
 
+        <section
+          class="main-content tab-panel"
+          id="inventoryPanel"
+          data-tab-panel="inventory"
+        >
+          <div class="inventory-hero">
+            <h2 class="welcome-title">Inventory</h2>
+            <p class="inventory-subtitle">
+              Quickly use or restock items without opening full edit.
+            </p>
+          </div>
+
+          <div class="inventory-metrics">
+            <div class="metric-card metric-total">
+              <span class="metric-label">Total items</span>
+              <span class="metric-value" id="metricTotalItems">0</span>
+            </div>
+            <div class="metric-card metric-low">
+              <span class="metric-label">Low stock</span>
+              <span class="metric-value" id="metricLowStock">0</span>
+            </div>
+          </div>
+
+          <section class="card">
+            <div class="inventory-form">
+              <div class="inventory-toolbar">
+                <input
+                  class="inventory-search"
+                  id="inventorySearch"
+                  type="search"
+                  placeholder="Search inventory"
+                  aria-label="Search inventory"
+                />
+                <button
+                  class="inventory-add-btn"
+                  type="button"
+                  id="inventoryQuickAddBtn"
+                >
+                  + Add
+                </button>
+              </div>
+
+              <div class="inventory-add-panel" id="inventoryAddPanel">
+                <form
+                  class="inventory-form"
+                  id="inventoryAddForm"
+                  style="padding: 0"
+                >
+                  <input
+                    class="input-control"
+                    id="inventoryAddName"
+                    type="text"
+                    placeholder="Ingredient name"
+                    required
+                  />
+
+                  <div class="inventory-inline-grid">
+                    <input
+                      class="input-control"
+                      id="inventoryAddQuantity"
+                      type="number"
+                      min="0.01"
+                      step="0.01"
+                      placeholder="Quantity"
+                      required
+                    />
+                    <input
+                      class="input-control"
+                      id="inventoryAddUnit"
+                      type="text"
+                      placeholder="Unit"
+                      required
+                    />
+                  </div>
+
+                  <div class="inventory-inline-grid">
+                    <input
+                      class="input-control"
+                      id="inventoryAddCategory"
+                      type="text"
+                      placeholder="Category"
+                    />
+                    <select
+                      class="input-control"
+                      id="inventoryAddStorage"
+                      required
+                    >
+                      <option value="room">Room temp</option>
+                      <option value="fresh">Keep fresh</option>
+                      <option value="freezer">Freezer</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div class="inventory-form-actions">
+                    <button class="btn-primary" type="submit">Add item</button>
+                    <button
+                      class="btn-secondary"
+                      type="button"
+                      id="inventoryAddCancelBtn"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="inventory-filters" id="inventoryFilters">
+                <button
+                  class="filter-chip active"
+                  type="button"
+                  data-filter="all"
+                >
+                  All
+                </button>
+                <button class="filter-chip" type="button" data-filter="room">
+                  Room temp
+                </button>
+                <button class="filter-chip" type="button" data-filter="fresh">
+                  Keep fresh
+                </button>
+                <button class="filter-chip" type="button" data-filter="freezer">
+                  Freezer
+                </button>
+                <button class="filter-chip" type="button" data-filter="other">
+                  Other
+                </button>
+              </div>
+
+              <div class="inventory-groups">
+                <div class="inventory-item-list" id="inventoryGroups"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header shopping-pickups-header">
+              <h2>🛒 Shopping pickups</h2>
+            </div>
+            <div class="shopping-list">
+              <button
+                class="shopping-add-toggle"
+                type="button"
+                id="shoppingAddToggleBtn"
+              >
+                + Add pickup item
+              </button>
+
+              <div class="shopping-add-panel" id="shoppingAddPanel">
+                <form class="inventory-form" id="shoppingAddForm" style="padding: 0">
+                  <input
+                    class="input-control"
+                    id="shoppingAddName"
+                    type="text"
+                    placeholder="Item name"
+                    required
+                  />
+
+                  <div class="inventory-inline-grid">
+                    <input
+                      class="input-control"
+                      id="shoppingAddQuantity"
+                      type="number"
+                      min="1"
+                      step="1"
+                      placeholder="Quantity"
+                      required
+                    />
+                    <input
+                      class="input-control"
+                      id="shoppingAddUnit"
+                      type="text"
+                      placeholder="Unit"
+                      required
+                    />
+                  </div>
+
+                  <div class="inventory-inline-grid">
+                    <input
+                      class="input-control"
+                      id="shoppingAddCategory"
+                      type="text"
+                      placeholder="Category"
+                    />
+                    <select class="input-control" id="shoppingAddStorage" required>
+                      <option value="room">Room temp</option>
+                      <option value="fresh">Keep fresh</option>
+                      <option value="freezer">Freezer</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div class="inventory-form-actions">
+                    <button class="btn-primary" type="submit">Add pickup</button>
+                    <button class="btn-secondary" type="button" id="shoppingAddCancelBtn">Cancel</button>
+                  </div>
+                </form>
+              </div>
+
+              <div id="shoppingListContainer"></div>
+              <button
+                class="btn-primary"
+                type="button"
+                id="shoppingToInventoryBtn"
+              >
+                Add checked to inventory
+              </button>
+            </div>
+          </section>
+
+          <div
+            class="status-banner"
+            id="inventoryStatus"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </section>
+
         <!-- Cooking Screen -->
         <section
           class="cooking-screen"
@@ -1711,80 +2412,273 @@
                 </div>
               </div>
             </div>
+
+            <button
+              class="btn-primary"
+              type="button"
+              onclick="completeSuggestedRecipe()"
+            >
+              Complete recipe and deduct inventory
+            </button>
           </section>
         </section>
-        <section class="family-screen" id="familyScreen" aria-label="Family members">
+        <section
+          class="family-screen"
+          id="familyScreen"
+          aria-label="Family members"
+        >
           <div class="family-screen-back-bar">
-            <button class="back-btn" type="button" onclick="switchTab('home')" aria-label="Go back to home">← Back</button>
-            <h2 class="family-screen-title">&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;&#x200D;&#x1F466; Your family</h2>
-            <button class="add-member-btn" type="button" aria-label="Add family member" onclick="openMemberModal(null)">
+            <button
+              class="back-btn"
+              type="button"
+              onclick="switchTab('home')"
+              aria-label="Go back to home"
+            >
+              ← Back
+            </button>
+            <h2 class="family-screen-title">
+              &#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;&#x200D;&#x1F466; Your
+              family
+            </h2>
+            <button
+              class="add-member-btn"
+              type="button"
+              aria-label="Add family member"
+              onclick="openMemberModal(null)"
+            >
               <span>&#xFF0B;</span> Add
             </button>
           </div>
           <div class="family-screen-list" id="familyScreenList"></div>
         </section>
-        <div class="modal-overlay" id="memberModal" aria-modal="true" role="dialog" aria-label="Edit family member">
+        <div
+          class="modal-overlay"
+          id="memberModal"
+          aria-modal="true"
+          role="dialog"
+          aria-label="Edit family member"
+        >
           <div class="modal-sheet">
             <div class="modal-header">
-              <button class="modal-cancel-btn" type="button" onclick="closeMemberModal()">Cancel</button>
+              <button
+                class="modal-cancel-btn"
+                type="button"
+                onclick="closeMemberModal()"
+              >
+                Cancel
+              </button>
               <h3 class="modal-title" id="modalTitle">Add member</h3>
-              <button class="modal-save-btn" type="button" onclick="saveMember()">Save</button>
+              <button
+                class="modal-save-btn"
+                type="button"
+                onclick="saveMember()"
+              >
+                Save
+              </button>
             </div>
 
             <div class="modal-body">
               <div class="modal-section-label">Avatar</div>
               <div class="avatar-picker" id="avatarPicker">
-                <button type="button" class="avatar-opt" data-emoji="&#x1F468;" onclick="selectAvatar(this)">&#x1F468;</button>
-                <button type="button" class="avatar-opt" data-emoji="&#x1F469;" onclick="selectAvatar(this)">&#x1F469;</button>
-                <button type="button" class="avatar-opt" data-emoji="&#x1F466;" onclick="selectAvatar(this)">&#x1F466;</button>
-                <button type="button" class="avatar-opt" data-emoji="&#x1F467;" onclick="selectAvatar(this)">&#x1F467;</button>
-                <button type="button" class="avatar-opt" data-emoji="&#x1F474;" onclick="selectAvatar(this)">&#x1F474;</button>
-                <button type="button" class="avatar-opt" data-emoji="&#x1F475;" onclick="selectAvatar(this)">&#x1F475;</button>
-                <button type="button" class="avatar-opt" data-emoji="&#x1F9D1;" onclick="selectAvatar(this)">&#x1F9D1;</button>
-                <button type="button" class="avatar-opt" data-emoji="&#x1F476;" onclick="selectAvatar(this)">&#x1F476;</button>
+                <button
+                  type="button"
+                  class="avatar-opt"
+                  data-emoji="&#x1F468;"
+                  onclick="selectAvatar(this)"
+                >
+                  &#x1F468;
+                </button>
+                <button
+                  type="button"
+                  class="avatar-opt"
+                  data-emoji="&#x1F469;"
+                  onclick="selectAvatar(this)"
+                >
+                  &#x1F469;
+                </button>
+                <button
+                  type="button"
+                  class="avatar-opt"
+                  data-emoji="&#x1F466;"
+                  onclick="selectAvatar(this)"
+                >
+                  &#x1F466;
+                </button>
+                <button
+                  type="button"
+                  class="avatar-opt"
+                  data-emoji="&#x1F467;"
+                  onclick="selectAvatar(this)"
+                >
+                  &#x1F467;
+                </button>
+                <button
+                  type="button"
+                  class="avatar-opt"
+                  data-emoji="&#x1F474;"
+                  onclick="selectAvatar(this)"
+                >
+                  &#x1F474;
+                </button>
+                <button
+                  type="button"
+                  class="avatar-opt"
+                  data-emoji="&#x1F475;"
+                  onclick="selectAvatar(this)"
+                >
+                  &#x1F475;
+                </button>
+                <button
+                  type="button"
+                  class="avatar-opt"
+                  data-emoji="&#x1F9D1;"
+                  onclick="selectAvatar(this)"
+                >
+                  &#x1F9D1;
+                </button>
+                <button
+                  type="button"
+                  class="avatar-opt"
+                  data-emoji="&#x1F476;"
+                  onclick="selectAvatar(this)"
+                >
+                  &#x1F476;
+                </button>
               </div>
               <div class="modal-section-label">Name</div>
-              <input class="modal-input" type="text" id="inputName" placeholder="e.g. Sarah" maxlength="30" />
+              <input
+                class="modal-input"
+                type="text"
+                id="inputName"
+                placeholder="e.g. Sarah"
+                maxlength="30"
+              />
               <div class="modal-section-label">Age</div>
-              <input class="modal-input" type="number" id="inputAge" placeholder="e.g. 42" min="0" max="120" />
+              <input
+                class="modal-input"
+                type="number"
+                id="inputAge"
+                placeholder="e.g. 42"
+                min="0"
+                max="120"
+              />
               <div class="modal-section-label">Role</div>
               <div class="role-picker" id="rolePicker">
-                <button type="button" class="role-opt" data-role="Parent" onclick="selectRole(this)">Parent</button>
-                <button type="button" class="role-opt" data-role="Teen" onclick="selectRole(this)">Teen</button>
-                <button type="button" class="role-opt" data-role="Child" onclick="selectRole(this)">Child</button>
-                <button type="button" class="role-opt" data-role="Senior" onclick="selectRole(this)">Senior</button>
+                <button
+                  type="button"
+                  class="role-opt"
+                  data-role="Parent"
+                  onclick="selectRole(this)"
+                >
+                  Parent
+                </button>
+                <button
+                  type="button"
+                  class="role-opt"
+                  data-role="Teen"
+                  onclick="selectRole(this)"
+                >
+                  Teen
+                </button>
+                <button
+                  type="button"
+                  class="role-opt"
+                  data-role="Child"
+                  onclick="selectRole(this)"
+                >
+                  Child
+                </button>
+                <button
+                  type="button"
+                  class="role-opt"
+                  data-role="Senior"
+                  onclick="selectRole(this)"
+                >
+                  Senior
+                </button>
               </div>
               <div class="modal-section-label">Daily calorie target (kcal)</div>
-              <input class="modal-input" type="number" id="inputCalories" placeholder="e.g. 2000" min="500" max="5000" step="50" />
-              <div class="modal-section-label">Health conditions <span class="modal-hint">(comma-separated)</span></div>
-              <input class="modal-input" type="text" id="inputHealth" placeholder="e.g. High blood pressure, Diabetes" />
-              <div class="modal-section-label">Allergies <span class="modal-hint">(comma-separated)</span></div>
-              <input class="modal-input" type="text" id="inputAllergies" placeholder="e.g. Peanuts, Shellfish" />
-              <div class="modal-section-label">Dietary preferences <span class="modal-hint">(comma-separated)</span></div>
-              <input class="modal-input" type="text" id="inputDiet" placeholder="e.g. Low sodium, High protein" />
-              <button class="modal-delete-btn" type="button" id="modalDeleteBtn" onclick="deleteMember()">
+              <input
+                class="modal-input"
+                type="number"
+                id="inputCalories"
+                placeholder="e.g. 2000"
+                min="500"
+                max="5000"
+                step="50"
+              />
+              <div class="modal-section-label">
+                Health conditions
+                <span class="modal-hint">(comma-separated)</span>
+              </div>
+              <input
+                class="modal-input"
+                type="text"
+                id="inputHealth"
+                placeholder="e.g. High blood pressure, Diabetes"
+              />
+              <div class="modal-section-label">
+                Allergies <span class="modal-hint">(comma-separated)</span>
+              </div>
+              <input
+                class="modal-input"
+                type="text"
+                id="inputAllergies"
+                placeholder="e.g. Peanuts, Shellfish"
+              />
+              <div class="modal-section-label">
+                Dietary preferences
+                <span class="modal-hint">(comma-separated)</span>
+              </div>
+              <input
+                class="modal-input"
+                type="text"
+                id="inputDiet"
+                placeholder="e.g. Low sodium, High protein"
+              />
+              <button
+                class="modal-delete-btn"
+                type="button"
+                id="modalDeleteBtn"
+                onclick="deleteMember()"
+              >
                 &#x1F5D1;&#xFE0F; Remove member
               </button>
-
             </div>
           </div>
         </div>
 
         <!-- Bottom Navigation -->
         <nav class="bottom-nav">
-          <div class="icon-rav nav-tab active-tab" id="tab-home" onclick="switchTab('home')">
+          <div
+            class="icon-rav nav-tab active-tab"
+            id="tab-home"
+            onclick="switchTab('home')"
+          >
             <i class="icon-nav home">&#x1F3E0;</i>
             <span>Home</span>
           </div>
-          <div class="icon-rav nav-tab" id="tab-recipes" onclick="switchTab('recipes')">
+          <div
+            class="icon-rav nav-tab"
+            id="tab-recipes"
+            onclick="switchTab('recipes')"
+          >
             <i class="icon-nav home">&#x1F4D6;</i>
             <span>Recipes</span>
           </div>
-          <div class="icon-rav nav-tab" id="tab-inventory" onclick="switchTab('inventory')">
+          <div
+            class="icon-rav nav-tab"
+            id="tab-inventory"
+            onclick="switchTab('inventory')"
+          >
             <i class="icon-nav home">&#x1F4E6;</i>
             <span>Inventory</span>
           </div>
-          <div class="icon-rav nav-tab" id="tab-family" onclick="switchTab('family')">
+          <div
+            class="icon-rav nav-tab"
+            id="tab-family"
+            onclick="switchTab('family')"
+          >
             <i class="icon-nav home">&#x1F465;</i>
             <span>Family</span>
           </div>
@@ -1793,50 +2687,82 @@
     </div>
 
     <script>
+      const INVENTORY_STORAGE_KEY = "kk-inventory-state";
+      const STORAGE_LABELS = {
+        room: "Room temp",
+        fresh: "Keep fresh",
+        freezer: "Freezer",
+        other: "Other",
+      };
+
+      let appState = loadInventoryState();
+      let activeInventoryFilter = "all";
+      let activeTab = "home";
+      let expandedItemId = null;
+
       let familyMembers = [
         {
-          id: 1, emoji: "👨", name: "David", age: 45, role: "Parent",
+          id: 1,
+          emoji: "👨",
+          name: "David",
+          age: 45,
+          role: "Parent",
           calories: 2000,
           health: ["High blood pressure", "High cholesterol"],
           allergies: [],
-          diet: ["Low sodium", "Low fat"]
+          diet: ["Low sodium", "Low fat"],
         },
         {
-          id: 2, emoji: "👩", name: "Sarah", age: 42, role: "Parent",
+          id: 2,
+          emoji: "👩",
+          name: "Sarah",
+          age: 42,
+          role: "Parent",
           calories: 1800,
           health: [],
           allergies: ["Shellfish", "Tree nuts"],
-          diet: []
+          diet: [],
         },
         {
-          id: 3, emoji: "👦", name: "Alex", age: 16, role: "Teen",
+          id: 3,
+          emoji: "👦",
+          name: "Alex",
+          age: 16,
+          role: "Teen",
           calories: 2400,
           health: [],
           allergies: ["Peanuts"],
-          diet: ["High protein", "More vegetables"]
+          diet: ["High protein", "More vegetables"],
         },
         {
-          id: 4, emoji: "👧", name: "Emma", age: 9, role: "Child",
+          id: 4,
+          emoji: "👧",
+          name: "Emma",
+          age: 9,
+          role: "Child",
           calories: 1600,
           health: ["Lactose intolerant"],
           allergies: ["Dairy", "Eggs"],
-          diet: ["Prefers sweet foods"]
-        }
+          diet: ["Prefers sweet foods"],
+        },
       ];
 
       let nextId = 5;
       let editingId = null;
       const roleColors = {
         Parent: { bg: "var(--member-blue-bg)", color: "var(--member-blue)" },
-        Teen:   { bg: "var(--member-purple-bg)", color: "var(--member-purple)" },
-        Child:  { bg: "var(--member-green-bg)", color: "var(--member-green)" },
-        Senior: { bg: "var(--member-orange-bg)", color: "var(--member-orange)" }
+        Teen: { bg: "var(--member-purple-bg)", color: "var(--member-purple)" },
+        Child: { bg: "var(--member-green-bg)", color: "var(--member-green)" },
+        Senior: {
+          bg: "var(--member-orange-bg)",
+          color: "var(--member-orange)",
+        },
       };
       function renderFamily() {
         const list = document.getElementById("familyScreenList");
         list.innerHTML = "";
 
-        familyMembers.forEach(m => {
+        familyMembers.forEach((m) => {
           const colors = roleColors[m.role] || roleColors.Parent;
           const card = document.createElement("div");
           card.className = "fcard";
@@ -1875,7 +2801,9 @@
             <div class="fcard-tags"><span class="ftag ftag-neutral">✅ None</span></div>
           `;
         }
-        const tags = items.map(i => `<span class="ftag ${tagClass}">${icon} ${i}</span>`).join("");
+        const tags = items
+          .map((i) => `<span class="ftag ${tagClass}">${icon} ${i}</span>`)
+          .join("");
         return `
           <div class="fcard-section-label">${label}</div>
           <div class="fcard-tags">${tags}</div>
@@ -1892,22 +2820,31 @@
         document.getElementById("inputHealth").value = "";
         document.getElementById("inputAllergies").value = "";
         document.getElementById("inputDiet").value = "";
-        document.querySelectorAll(".avatar-opt").forEach(b => b.classList.remove("selected"));
-        document.querySelectorAll(".role-opt").forEach(b => b.classList.remove("selected"));
+        document
+          .querySelectorAll(".avatar-opt")
+          .forEach((b) => b.classList.remove("selected"));
+        document
+          .querySelectorAll(".role-opt")
+          .forEach((b) => b.classList.remove("selected"));
 
         if (id !== null) {
-          const m = familyMembers.find(x => x.id === id);
+          const m = familyMembers.find((x) => x.id === id);
           title.textContent = "Edit member";
           deleteBtn.style.display = "block";
           document.getElementById("inputName").value = m.name;
           document.getElementById("inputAge").value = m.age;
           document.getElementById("inputCalories").value = m.calories;
           document.getElementById("inputHealth").value = m.health.join(", ");
-          document.getElementById("inputAllergies").value = m.allergies.join(", ");
+          document.getElementById("inputAllergies").value =
+            m.allergies.join(", ");
           document.getElementById("inputDiet").value = m.diet.join(", ");
-          const avatarBtn = document.querySelector(`.avatar-opt[data-emoji="${m.emoji}"]`);
+          const avatarBtn = document.querySelector(
+            `.avatar-opt[data-emoji="${m.emoji}"]`,
+          );
           if (avatarBtn) avatarBtn.classList.add("selected");
-          const roleBtn = document.querySelector(`.role-opt[data-role="${m.role}"]`);
+          const roleBtn = document.querySelector(
+            `.role-opt[data-role="${m.role}"]`,
+          );
           if (roleBtn) roleBtn.classList.add("selected");
         } else {
           title.textContent = "Add member";
@@ -1925,25 +2862,35 @@
       }
 
       function selectAvatar(btn) {
-        document.querySelectorAll(".avatar-opt").forEach(b => b.classList.remove("selected"));
+        document
+          .querySelectorAll(".avatar-opt")
+          .forEach((b) => b.classList.remove("selected"));
         btn.classList.add("selected");
       }
 
       function selectRole(btn) {
-        document.querySelectorAll(".role-opt").forEach(b => b.classList.remove("selected"));
+        document
+          .querySelectorAll(".role-opt")
+          .forEach((b) => b.classList.remove("selected"));
         btn.classList.add("selected");
       }
 
       function parseTags(str) {
-        return str.split(",").map(s => s.trim()).filter(Boolean);
+        return str
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean);
       }
 
       function saveMember() {
         const name = document.getElementById("inputName").value.trim();
         const age = parseInt(document.getElementById("inputAge").value) || 0;
-        const calories = parseInt(document.getElementById("inputCalories").value) || 2000;
+        const calories =
+          parseInt(document.getElementById("inputCalories").value) || 2000;
         const health = parseTags(document.getElementById("inputHealth").value);
-        const allergies = parseTags(document.getElementById("inputAllergies").value);
+        const allergies = parseTags(
+          document.getElementById("inputAllergies").value,
+        );
         const diet = parseTags(document.getElementById("inputDiet").value);
 
         const selectedAvatar = document.querySelector(".avatar-opt.selected");
@@ -1954,16 +2901,37 @@
 
         if (!name) {
           document.getElementById("inputName").focus();
-          document.getElementById("inputName").style.borderColor = "var(--danger)";
+          document.getElementById("inputName").style.borderColor =
+            "var(--danger)";
           return;
         }
         document.getElementById("inputName").style.borderColor = "";
 
         if (editingId !== null) {
-          const idx = familyMembers.findIndex(x => x.id === editingId);
-          familyMembers[idx] = { id: editingId, emoji, name, age, role, calories, health, allergies, diet };
+          const idx = familyMembers.findIndex((x) => x.id === editingId);
+          familyMembers[idx] = {
+            id: editingId,
+            emoji,
+            name,
+            age,
+            role,
+            calories,
+            health,
+            allergies,
+            diet,
+          };
         } else {
-          familyMembers.push({ id: nextId++, emoji, name, age, role, calories, health, allergies, diet });
+          familyMembers.push({
+            id: nextId++,
+            emoji,
+            name,
+            age,
+            role,
+            calories,
+            health,
+            allergies,
+            diet,
+          });
         }
 
         renderFamily();
@@ -1972,11 +2940,693 @@
 
       function deleteMember() {
         if (editingId === null) return;
-        familyMembers = familyMembers.filter(x => x.id !== editingId);
+        familyMembers = familyMembers.filter((x) => x.id !== editingId);
         renderFamily();
         closeMemberModal();
       }
+
+      function loadInventoryState() {
+        const fallback = {
+          recipeInProgress: false,
+          inventory: [
+            {
+              id: createId(),
+              name: "Potatoes",
+              quantity: 4,
+              unit: "left",
+              category: "Vegetable",
+              storage: "room",
+              lowStockAt: 2,
+            },
+            {
+              id: createId(),
+              name: "Steak",
+              quantity: 6,
+              unit: "cuts",
+              category: "Meat",
+              storage: "fresh",
+              lowStockAt: 2,
+            },
+            {
+              id: createId(),
+              name: "Milk",
+              quantity: 2,
+              unit: "cups",
+              category: "Dairy",
+              storage: "fresh",
+              lowStockAt: 1,
+            },
+            {
+              id: createId(),
+              name: "Frozen peas",
+              quantity: 1,
+              unit: "bag",
+              category: "Vegetable",
+              storage: "freezer",
+              lowStockAt: 1,
+            },
+          ],
+          shoppingList: [
+            {
+              id: createId(),
+              name: "Eggs",
+              quantity: 12,
+              unit: "count",
+              category: "Dairy",
+              storage: "fresh",
+              checked: false,
+            },
+            {
+              id: createId(),
+              name: "Olive oil",
+              quantity: 1,
+              unit: "bottle",
+              category: "Oil",
+              storage: "room",
+              checked: false,
+            },
+          ],
+        };
+
+        try {
+          const raw = localStorage.getItem(INVENTORY_STORAGE_KEY);
+          if (!raw) return fallback;
+          const parsed = JSON.parse(raw);
+          return {
+            recipeInProgress: Boolean(parsed.recipeInProgress),
+            inventory: Array.isArray(parsed.inventory)
+              ? parsed.inventory
+              : fallback.inventory,
+            shoppingList: Array.isArray(parsed.shoppingList)
+              ? parsed.shoppingList
+              : fallback.shoppingList,
+          };
+        } catch (error) {
+          return fallback;
+        }
+      }
+
+      function saveInventoryState() {
+        localStorage.setItem(INVENTORY_STORAGE_KEY, JSON.stringify(appState));
+      }
+
+      function createId() {
+        return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+      }
+
+      function normalizeText(value) {
+        return String(value || "")
+          .trim()
+          .toLowerCase();
+      }
+
+      function formatQty(value) {
+        const num = Number(value);
+        if (!Number.isFinite(num)) return "0";
+        if (Number.isInteger(num)) return String(num);
+        return num
+          .toFixed(2)
+          .replace(/\.00$/, "")
+          .replace(/(\.[1-9])0$/, "$1");
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function isLowStock(item) {
+        const threshold = Number(item.lowStockAt || 1);
+        return Number(item.quantity) <= threshold;
+      }
+
+      function showStatus(message, tone) {
+        const banner = document.getElementById("inventoryStatus");
+        if (!banner) return;
+        banner.textContent = message;
+        banner.className = `status-banner show ${tone}`;
+      }
+
+      function toggleAddPanel(open) {
+        const panel = document.getElementById("inventoryAddPanel");
+        panel.classList.toggle("show", open);
+      }
+
+      function clearAddForm() {
+        const form = document.getElementById("inventoryAddForm");
+        if (!form) return;
+        form.reset();
+        document.getElementById("inventoryAddStorage").value = "room";
+      }
+
+      function adjustQuantity(id, delta) {
+        const item = appState.inventory.find((entry) => entry.id === id);
+        if (!item) return;
+        item.quantity = Number(item.quantity) + Number(delta);
+        if (item.quantity <= 0) {
+          addToShoppingPickups(item, 1);
+          appState.inventory = appState.inventory.filter(
+            (entry) => entry.id !== id,
+          );
+          showStatus(
+            `${item.name} reached zero and was added to shopping pickups.`,
+            "warning",
+          );
+          if (expandedItemId === id) {
+            expandedItemId = null;
+          }
+        }
+        saveInventoryState();
+        renderInventory();
+        renderShoppingList();
+      }
+
+      function addToShoppingPickups(item, quantity = 1) {
+        const qtyToAdd = Math.max(1, Number(quantity) || 1);
+        const existing = appState.shoppingList.find(
+          (entry) =>
+            normalizeText(entry.name) === normalizeText(item.name) &&
+            normalizeText(entry.unit) === normalizeText(item.unit) &&
+            entry.storage === item.storage,
+        );
+
+        if (existing) {
+          existing.quantity = Number(existing.quantity) + qtyToAdd;
+          return;
+        }
+
+        appState.shoppingList.push({
+          id: createId(),
+          name: item.name,
+          quantity: qtyToAdd,
+          unit: item.unit,
+          category: item.category || "General",
+          storage: item.storage,
+          checked: false,
+        });
+      }
+
+      function renderInventory() {
+        const list = document.getElementById("inventoryGroups");
+        const searchTerm = normalizeText(
+          document.getElementById("inventorySearch")?.value || "",
+        );
+        const filtered = appState.inventory
+          .filter(
+            (item) =>
+              activeInventoryFilter === "all" ||
+              item.storage === activeInventoryFilter,
+          )
+          .filter((item) => {
+            if (!searchTerm) return true;
+            return [item.name, item.category, item.storage, item.unit].some(
+              (value) => normalizeText(value).includes(searchTerm),
+            );
+          })
+          .sort((a, b) => a.name.localeCompare(b.name));
+
+        const lowStockCount = appState.inventory.filter(isLowStock).length;
+        document.getElementById("metricTotalItems").textContent = String(
+          appState.inventory.length,
+        );
+        document.getElementById("metricLowStock").textContent =
+          String(lowStockCount);
+
+        if (!filtered.length) {
+          list.innerHTML =
+            '<p class="empty-state">No matching items. Try a different filter or add a new ingredient.</p>';
+          return;
+        }
+
+        list.innerHTML = filtered
+          .map((item) => {
+            const low = isLowStock(item);
+            return `
+            <article class="inventory-item">
+              <div class="inventory-item-main">
+                <div class="inventory-item-name">${escapeHtml(item.name)}</div>
+                <div class="inventory-item-meta">${escapeHtml(item.category || "General")} · ${escapeHtml(STORAGE_LABELS[item.storage] || "Other")} · ${formatQty(item.quantity)} ${escapeHtml(item.unit)}</div>
+                <div class="inventory-status-row">
+                  ${low ? '<span class="mini-badge low">Low stock</span>' : ""}
+                </div>
+              </div>
+
+              <div class="inventory-item-actions">
+                <div class="qty-stepper" aria-label="Quick quantity controls for ${escapeHtml(item.name)}">
+                  <button class="stepper-btn" type="button" data-action="dec" data-id="${item.id}">−</button>
+                  <span class="stepper-value">${formatQty(item.quantity)}</span>
+                  <button class="stepper-btn" type="button" data-action="inc" data-id="${item.id}">+</button>
+                </div>
+                <button class="pickup-btn" type="button" data-action="pickup" data-id="${item.id}" aria-label="Add ${escapeHtml(item.name)} to shopping pickups">
+                  <img class="action-icon" src="cart.png" alt="" />
+                </button>
+                <button class="icon-pencil-btn" type="button" data-action="details" data-id="${item.id}" aria-label="Edit ${escapeHtml(item.name)}">
+                  <img class="action-icon" src="edit.png" alt="" />
+                </button>
+              </div>
+
+              <div class="inline-edit-area ${expandedItemId === item.id ? "show" : ""}">
+                <div class="inventory-inline-grid">
+                  <input class="input-control" data-inline="name" data-id="${item.id}" type="text" value="${escapeHtml(item.name)}" />
+                  <input class="input-control" data-inline="category" data-id="${item.id}" type="text" value="${escapeHtml(item.category || "General")}" />
+                </div>
+                <div class="inventory-inline-grid" style="margin-top: 6px">
+                  <input class="input-control" data-inline="quantity" data-id="${item.id}" type="number" min="0.01" step="0.01" value="${formatQty(item.quantity)}" />
+                  <input class="input-control" data-inline="unit" data-id="${item.id}" type="text" value="${escapeHtml(item.unit)}" />
+                </div>
+                <div class="inventory-inline-grid" style="margin-top: 6px">
+                  <select class="input-control" data-inline="storage" data-id="${item.id}">
+                    <option value="room" ${item.storage === "room" ? "selected" : ""}>Room temp</option>
+                    <option value="fresh" ${item.storage === "fresh" ? "selected" : ""}>Keep fresh</option>
+                    <option value="freezer" ${item.storage === "freezer" ? "selected" : ""}>Freezer</option>
+                    <option value="other" ${item.storage === "other" ? "selected" : ""}>Other</option>
+                  </select>
+                  <div class="inventory-inline-actions">
+                    <button class="btn-secondary" type="button" data-action="cancel-inline" data-id="${item.id}" style="padding: 9px 10px">Cancel</button>
+                    <button class="btn-primary" type="button" data-action="save-inline" data-id="${item.id}" style="padding: 9px 10px; margin-top: 0">Save</button>
+                  </div>
+                </div>
+                <button class="inventory-delete" type="button" data-action="delete-inline" data-id="${item.id}" style="margin-top: 6px">Delete item</button>
+              </div>
+            </article>
+          `;
+          })
+          .join("");
+      }
+
+      function renderShoppingList() {
+        const container = document.getElementById("shoppingListContainer");
+        if (!container) return;
+
+        if (!appState.shoppingList.length) {
+          container.innerHTML =
+            '<p class="empty-state">Shopping list is clear.</p>';
+          return;
+        }
+
+        container.innerHTML = appState.shoppingList
+          .map(
+            (item) => `
+          <div class="shopping-item ${item.checked ? "checked" : ""}">
+            <div class="shopping-row">
+              <label>
+                <input type="checkbox" data-shopping-id="${item.id}" ${item.checked ? "checked" : ""} />
+                <div class="shopping-item-main">
+                  <strong>${escapeHtml(item.name)}</strong>
+                  <div class="inventory-item-meta">${formatQty(item.quantity)} ${escapeHtml(item.unit)} · ${escapeHtml(STORAGE_LABELS[item.storage] || "Other")}</div>
+                </div>
+              </label>
+              <button class="shopping-delete-btn" type="button" data-shopping-delete-id="${item.id}" aria-label="Remove ${escapeHtml(item.name)} from shopping pickups">×</button>
+              </div>
+          </div>
+        `,
+          )
+          .join("");
+      }
+
+      function upsertFromShopping(item) {
+        const match = appState.inventory.find(
+          (entry) =>
+            normalizeText(entry.name) === normalizeText(item.name) &&
+            normalizeText(entry.unit) === normalizeText(item.unit) &&
+            entry.storage === item.storage,
+        );
+
+        if (!match) {
+          appState.inventory.push({
+            id: createId(),
+            name: item.name,
+            quantity: Number(item.quantity),
+            unit: item.unit,
+            category: item.category || "General",
+            storage: item.storage,
+            lowStockAt: 1,
+          });
+          return;
+        }
+
+        match.quantity = Number(match.quantity) + Number(item.quantity);
+      }
+
+      function bindInventoryEvents() {
+        const searchInput = document.getElementById("inventorySearch");
+        const filters = document.getElementById("inventoryFilters");
+        const list = document.getElementById("inventoryGroups");
+        const addForm = document.getElementById("inventoryAddForm");
+        const addCancel = document.getElementById("inventoryAddCancelBtn");
+        const quickAddBtn = document.getElementById("inventoryQuickAddBtn");
+        const shoppingList = document.getElementById("shoppingListContainer");
+        const shoppingAddToggleBtn = document.getElementById(
+          "shoppingAddToggleBtn",
+        );
+        const shoppingAddPanel = document.getElementById("shoppingAddPanel");
+        const shoppingAddForm = document.getElementById("shoppingAddForm");
+        const shoppingAddCancelBtn = document.getElementById(
+          "shoppingAddCancelBtn",
+        );
+        const shoppingButton = document.getElementById(
+          "shoppingToInventoryBtn",
+        );
+
+        const clearShoppingAddForm = () => {
+          shoppingAddForm.reset();
+          document.getElementById("shoppingAddStorage").value = "room";
+        };
+
+        const toggleShoppingAddPanel = (open) => {
+          shoppingAddPanel.classList.toggle("show", open);
+        };
+
+        searchInput.addEventListener("input", () => {
+          renderInventory();
+        });
+
+        filters.addEventListener("click", (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const filter = target.dataset.filter;
+          if (!filter) return;
+          activeInventoryFilter = filter;
+          filters.querySelectorAll(".filter-chip").forEach((chip) => {
+            chip.classList.toggle("active", chip.dataset.filter === filter);
+          });
+          renderInventory();
+        });
+
+        quickAddBtn.addEventListener("click", () => {
+          toggleAddPanel(true);
+          document.getElementById("inventoryAddName").focus();
+        });
+
+        list.addEventListener("click", (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const actionTarget = target.closest("[data-action]");
+          if (!(actionTarget instanceof HTMLElement)) return;
+          if (!list.contains(actionTarget)) return;
+          const action = actionTarget.dataset.action;
+          const id = actionTarget.dataset.id;
+          if (!action || !id) return;
+
+          if (action === "dec") {
+            adjustQuantity(id, -1);
+            return;
+          }
+          if (action === "inc") {
+            adjustQuantity(id, 1);
+            return;
+          }
+          if (action === "pickup") {
+            const item = appState.inventory.find((entry) => entry.id === id);
+            if (!item) return;
+            addToShoppingPickups(item, 1);
+            saveInventoryState();
+            renderShoppingList();
+            showStatus(`${item.name} added to shopping pickups.`, "info");
+            return;
+          }
+          if (action === "details") {
+            expandedItemId = expandedItemId === id ? null : id;
+            renderInventory();
+            return;
+          }
+          if (action === "cancel-inline") {
+            expandedItemId = null;
+            renderInventory();
+            return;
+          }
+          if (action === "delete-inline") {
+            const selected = appState.inventory.find((item) => item.id === id);
+            appState.inventory = appState.inventory.filter(
+              (item) => item.id !== id,
+            );
+            if (expandedItemId === id) {
+              expandedItemId = null;
+            }
+            saveInventoryState();
+            renderInventory();
+            showStatus(
+              `${selected ? selected.name : "Item"} removed.`,
+              "warning",
+            );
+            return;
+          }
+          if (action === "save-inline") {
+            const nameInput = list.querySelector(
+              `[data-inline="name"][data-id="${id}"]`,
+            );
+            const categoryInput = list.querySelector(
+              `[data-inline="category"][data-id="${id}"]`,
+            );
+            const quantityInput = list.querySelector(
+              `[data-inline="quantity"][data-id="${id}"]`,
+            );
+            const unitInput = list.querySelector(
+              `[data-inline="unit"][data-id="${id}"]`,
+            );
+            const storageInput = list.querySelector(
+              `[data-inline="storage"][data-id="${id}"]`,
+            );
+            if (
+              !(nameInput instanceof HTMLInputElement) ||
+              !(categoryInput instanceof HTMLInputElement) ||
+              !(quantityInput instanceof HTMLInputElement) ||
+              !(unitInput instanceof HTMLInputElement) ||
+              !(storageInput instanceof HTMLSelectElement)
+            ) {
+              return;
+            }
+
+            const nextName = nameInput.value.trim();
+            const nextCategory = categoryInput.value.trim() || "General";
+            const nextQuantity = Number(quantityInput.value);
+            const nextUnit = unitInput.value.trim();
+            const nextStorage = storageInput.value;
+            if (
+              !nextName ||
+              !nextUnit ||
+              !Number.isFinite(nextQuantity) ||
+              nextQuantity <= 0
+            ) {
+              showStatus("Enter valid values before saving.", "warning");
+              return;
+            }
+
+            appState.inventory = appState.inventory.map((entry) =>
+              entry.id === id
+                ? {
+                    ...entry,
+                    name: nextName,
+                    category: nextCategory,
+                    quantity: nextQuantity,
+                    unit: nextUnit,
+                    storage: nextStorage,
+                  }
+                : entry,
+            );
+            expandedItemId = null;
+            saveInventoryState();
+            renderInventory();
+            showStatus(`${nextName} updated.`, "success");
+          }
+        });
+
+        addForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const name = document.getElementById("inventoryAddName").value.trim();
+          const quantity = Number(
+            document.getElementById("inventoryAddQuantity").value,
+          );
+          const unit = document.getElementById("inventoryAddUnit").value.trim();
+          const category =
+            document.getElementById("inventoryAddCategory").value.trim() ||
+            "General";
+          const storage = document.getElementById("inventoryAddStorage").value;
+
+          if (!name || !unit || !Number.isFinite(quantity) || quantity <= 0) {
+            showStatus("Enter a valid name, quantity, and unit.", "warning");
+            return;
+          }
+
+          appState.inventory.push({
+            id: createId(),
+            name,
+            quantity,
+            unit,
+            category,
+            storage,
+            lowStockAt: 1,
+          });
+          showStatus(`${name} added.`, "success");
+
+          saveInventoryState();
+          clearAddForm();
+          toggleAddPanel(false);
+          renderInventory();
+        });
+
+        addCancel.addEventListener("click", () => {
+          clearAddForm();
+          toggleAddPanel(false);
+        });
+
+        shoppingAddToggleBtn.addEventListener("click", () => {
+          toggleShoppingAddPanel(true);
+          document.getElementById("shoppingAddName").focus();
+        });
+
+        shoppingAddCancelBtn.addEventListener("click", () => {
+          clearShoppingAddForm();
+          toggleShoppingAddPanel(false);
+        });
+
+        shoppingAddForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const name = document.getElementById("shoppingAddName").value.trim();
+          const quantity = Number(
+            document.getElementById("shoppingAddQuantity").value,
+          );
+          const unit = document.getElementById("shoppingAddUnit").value.trim();
+          const category =
+            document.getElementById("shoppingAddCategory").value.trim() ||
+            "General";
+          const storage = document.getElementById("shoppingAddStorage").value;
+
+          if (!name || !unit || !Number.isFinite(quantity) || quantity <= 0) {
+            showStatus("Enter a valid pickup item, quantity, and unit.", "warning");
+            return;
+          }
+
+          addToShoppingPickups({ name, unit, category, storage }, quantity);
+          saveInventoryState();
+          renderShoppingList();
+          clearShoppingAddForm();
+          toggleShoppingAddPanel(false);
+          showStatus(`${name} added to shopping pickups.`, "success");
+        });
+
+        shoppingList.addEventListener("change", (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLInputElement)) return;
+          const shoppingId = target.dataset.shoppingId;
+          if (!shoppingId) return;
+
+          appState.shoppingList = appState.shoppingList.map((item) =>
+            item.id === shoppingId
+              ? { ...item, checked: target.checked }
+              : item,
+          );
+          saveInventoryState();
+          renderShoppingList();
+        });
+
+        shoppingList.addEventListener("click", (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const deleteTarget = target.closest("[data-shopping-delete-id]");
+          if (!(deleteTarget instanceof HTMLElement)) return;
+
+          const deleteId = deleteTarget.dataset.shoppingDeleteId;
+          if (!deleteId) return;
+
+          const selected = appState.shoppingList.find((item) => item.id === deleteId);
+          appState.shoppingList = appState.shoppingList.filter(
+            (item) => item.id !== deleteId,
+          );
+          saveInventoryState();
+          renderShoppingList();
+          showStatus(
+            `${selected ? selected.name : "Pickup item"} removed.`,
+            "warning",
+          );
+        });
+
+        shoppingButton.addEventListener("click", () => {
+          const checked = appState.shoppingList.filter((item) => item.checked);
+          if (!checked.length) {
+            showStatus("Select at least one shopping item first.", "warning");
+            return;
+          }
+
+          checked.forEach((item) => upsertFromShopping(item));
+          appState.shoppingList = appState.shoppingList.filter(
+            (item) => !item.checked,
+          );
+          saveInventoryState();
+          renderInventory();
+          renderShoppingList();
+          showStatus("Checked shopping items moved to inventory.", "success");
+        });
+      }
+
+      function completeSuggestedRecipe() {
+        const needed = [
+          { name: "Steak", quantity: 4, unit: "cuts" },
+          { name: "Potatoes", quantity: 6, unit: "left" },
+          { name: "Butter", quantity: 4, unit: "tbsp" },
+          { name: "Milk", quantity: 0.5, unit: "cups" },
+        ];
+        const missing = [];
+
+        needed.forEach((required) => {
+          const item = appState.inventory.find(
+            (entry) =>
+              normalizeText(entry.name) === normalizeText(required.name),
+          );
+          if (!item) {
+            missing.push(required.name);
+            return;
+          }
+          item.quantity = Number(item.quantity) - Number(required.quantity);
+          if (item.quantity <= 0) {
+            addToShoppingPickups(item, 1);
+            appState.inventory = appState.inventory.filter(
+              (entry) => entry.id !== item.id,
+            );
+          }
+        });
+
+        appState.recipeInProgress = false;
+        saveInventoryState();
+        renderInventory();
+
+        if (missing.length) {
+          showStatus(
+            `Recipe completed with missing items: ${missing.join(", ")}.`,
+            "warning",
+          );
+        } else {
+          showStatus(
+            "Recipe completed. Inventory was auto-deducted.",
+            "success",
+          );
+        }
+
+        closeCookingScreen();
+      }
+
+      function updateScreenScrollState(tab) {
+        const screen = document.querySelector(".screen");
+        const nutritionSection = document.getElementById("nutritionSection");
+        const familyExpanded = Boolean(
+          nutritionSection && nutritionSection.classList.contains("show-all"),
+        );
+        const shouldScroll =
+          tab === "inventory" || tab === "family" || familyExpanded;
+        screen.classList.toggle("screen-scroll-enabled", shouldScroll);
+      }
+
       function openCookingScreen() {
+        appState.recipeInProgress = true;
+        saveInventoryState();
+        showStatus(
+          "Recipe started. Complete it to deduct ingredients automatically.",
+          "info",
+        );
         document.getElementById("cookingScreen").classList.add("active");
       }
 
@@ -1989,10 +3639,15 @@
         const screen = document.querySelector(".screen");
         const toggleButton = document.getElementById("familyToggle");
         const isExpanded = nutritionSection.classList.toggle("show-all");
-        screen.classList.toggle("screen-scroll-enabled", isExpanded);
+        updateScreenScrollState(activeTab);
         toggleButton.setAttribute("aria-expanded", String(isExpanded));
         if (isExpanded) {
-          setTimeout(() => { toggleButton.scrollIntoView({ block: "nearest", behavior: "smooth" }); }, 50);
+          setTimeout(() => {
+            toggleButton.scrollIntoView({
+              block: "nearest",
+              behavior: "smooth",
+            });
+          }, 50);
         } else {
           screen.scrollTo({ top: 0, behavior: "smooth" });
         }
@@ -2000,25 +3655,53 @@
 
       function switchTab(tab) {
         const mainContent = document.getElementById("mainContent");
+        const inventoryPanel = document.getElementById("inventoryPanel");
         const familyScreen = document.getElementById("familyScreen");
         const cookingScreen = document.getElementById("cookingScreen");
+        activeTab = tab;
         cookingScreen.classList.remove("active");
-        if (tab === "family") {
-          mainContent.style.display = "none";
-          familyScreen.classList.add("family-screen-active");
-          document.querySelector(".screen").classList.add("screen-scroll-enabled");
-        } else {
-          mainContent.style.display = "";
-          familyScreen.classList.remove("family-screen-active");
-          document.querySelector(".screen").classList.remove("screen-scroll-enabled");
+
+        if (tab === "recipes") {
+          showStatus(
+            "Recipes tab is next. Inventory remains available for quick updates.",
+            "info",
+          );
+          tab = "home";
+          activeTab = tab;
         }
-        document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active-tab"));
-        const activeTab = document.getElementById("tab-" + tab);
-        if (activeTab) activeTab.classList.add("active-tab");
+
+        if (tab === "family") {
+          mainContent.classList.remove("active");
+          inventoryPanel.classList.remove("active");
+          familyScreen.classList.add("family-screen-active");
+        } else if (tab === "inventory") {
+          mainContent.classList.remove("active");
+          inventoryPanel.classList.add("active");
+          familyScreen.classList.remove("family-screen-active");
+        } else {
+          mainContent.classList.add("active");
+          inventoryPanel.classList.remove("active");
+          familyScreen.classList.remove("family-screen-active");
+        }
+        document
+          .querySelectorAll(".nav-tab")
+          .forEach((t) => t.classList.remove("active-tab"));
+        const activeNode = document.getElementById("tab-" + tab);
+        if (activeNode) activeNode.classList.add("active-tab");
+        updateScreenScrollState(tab);
       }
-      document.getElementById("memberModal").addEventListener("click", function(e) {
-        if (e.target === this) closeMemberModal();
-      });
+      document
+        .getElementById("memberModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeMemberModal();
+        });
+
+      bindInventoryEvents();
+      renderInventory();
+      renderShoppingList();
+      clearAddForm();
+      toggleAddPanel(false);
+      updateScreenScrollState("home");
       renderFamily();
     </script>
   </body>
