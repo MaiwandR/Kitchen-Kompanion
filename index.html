@@ -1713,8 +1713,6 @@
             </div>
           </section>
         </section>
-
-        <!-- Family Screen -->
         <section class="family-screen" id="familyScreen" aria-label="Family members">
           <div class="family-screen-back-bar">
             <button class="back-btn" type="button" onclick="switchTab('home')" aria-label="Go back to home">← Back</button>
@@ -1725,8 +1723,6 @@
           </div>
           <div class="family-screen-list" id="familyScreenList"></div>
         </section>
-
-        <!-- Member Edit/Add Modal -->
         <div class="modal-overlay" id="memberModal" aria-modal="true" role="dialog" aria-label="Edit family member">
           <div class="modal-sheet">
             <div class="modal-header">
@@ -1736,8 +1732,6 @@
             </div>
 
             <div class="modal-body">
-
-              <!-- Avatar picker -->
               <div class="modal-section-label">Avatar</div>
               <div class="avatar-picker" id="avatarPicker">
                 <button type="button" class="avatar-opt" data-emoji="&#x1F468;" onclick="selectAvatar(this)">&#x1F468;</button>
@@ -1749,16 +1743,10 @@
                 <button type="button" class="avatar-opt" data-emoji="&#x1F9D1;" onclick="selectAvatar(this)">&#x1F9D1;</button>
                 <button type="button" class="avatar-opt" data-emoji="&#x1F476;" onclick="selectAvatar(this)">&#x1F476;</button>
               </div>
-
-              <!-- Name -->
               <div class="modal-section-label">Name</div>
               <input class="modal-input" type="text" id="inputName" placeholder="e.g. Sarah" maxlength="30" />
-
-              <!-- Age -->
               <div class="modal-section-label">Age</div>
               <input class="modal-input" type="number" id="inputAge" placeholder="e.g. 42" min="0" max="120" />
-
-              <!-- Role -->
               <div class="modal-section-label">Role</div>
               <div class="role-picker" id="rolePicker">
                 <button type="button" class="role-opt" data-role="Parent" onclick="selectRole(this)">Parent</button>
@@ -1766,24 +1754,14 @@
                 <button type="button" class="role-opt" data-role="Child" onclick="selectRole(this)">Child</button>
                 <button type="button" class="role-opt" data-role="Senior" onclick="selectRole(this)">Senior</button>
               </div>
-
-              <!-- Calorie target -->
               <div class="modal-section-label">Daily calorie target (kcal)</div>
               <input class="modal-input" type="number" id="inputCalories" placeholder="e.g. 2000" min="500" max="5000" step="50" />
-
-              <!-- Health conditions -->
               <div class="modal-section-label">Health conditions <span class="modal-hint">(comma-separated)</span></div>
               <input class="modal-input" type="text" id="inputHealth" placeholder="e.g. High blood pressure, Diabetes" />
-
-              <!-- Allergies -->
               <div class="modal-section-label">Allergies <span class="modal-hint">(comma-separated)</span></div>
               <input class="modal-input" type="text" id="inputAllergies" placeholder="e.g. Peanuts, Shellfish" />
-
-              <!-- Dietary preferences -->
               <div class="modal-section-label">Dietary preferences <span class="modal-hint">(comma-separated)</span></div>
               <input class="modal-input" type="text" id="inputDiet" placeholder="e.g. Low sodium, High protein" />
-
-              <!-- Delete button (edit mode only) -->
               <button class="modal-delete-btn" type="button" id="modalDeleteBtn" onclick="deleteMember()">
                 &#x1F5D1;&#xFE0F; Remove member
               </button>
@@ -1848,14 +1826,12 @@
 
       let nextId = 5;
       let editingId = null;
-
       const roleColors = {
         Parent: { bg: "var(--member-blue-bg)", color: "var(--member-blue)" },
         Teen:   { bg: "var(--member-purple-bg)", color: "var(--member-purple)" },
         Child:  { bg: "var(--member-green-bg)", color: "var(--member-green)" },
         Senior: { bg: "var(--member-orange-bg)", color: "var(--member-orange)" }
       };
-
       function renderFamily() {
         const list = document.getElementById("familyScreenList");
         list.innerHTML = "";
@@ -1905,13 +1881,11 @@
           <div class="fcard-tags">${tags}</div>
         `;
       }
-
       function openMemberModal(id) {
         editingId = id;
         const modal = document.getElementById("memberModal");
         const deleteBtn = document.getElementById("modalDeleteBtn");
         const title = document.getElementById("modalTitle");
-
         document.getElementById("inputName").value = "";
         document.getElementById("inputAge").value = "";
         document.getElementById("inputCalories").value = "";
@@ -1931,10 +1905,8 @@
           document.getElementById("inputHealth").value = m.health.join(", ");
           document.getElementById("inputAllergies").value = m.allergies.join(", ");
           document.getElementById("inputDiet").value = m.diet.join(", ");
-
           const avatarBtn = document.querySelector(`.avatar-opt[data-emoji="${m.emoji}"]`);
           if (avatarBtn) avatarBtn.classList.add("selected");
-
           const roleBtn = document.querySelector(`.role-opt[data-role="${m.role}"]`);
           if (roleBtn) roleBtn.classList.add("selected");
         } else {
@@ -2004,7 +1976,6 @@
         renderFamily();
         closeMemberModal();
       }
-
       function openCookingScreen() {
         document.getElementById("cookingScreen").classList.add("active");
       }
@@ -2045,11 +2016,9 @@
         const activeTab = document.getElementById("tab-" + tab);
         if (activeTab) activeTab.classList.add("active-tab");
       }
-
       document.getElementById("memberModal").addEventListener("click", function(e) {
         if (e.target === this) closeMemberModal();
       });
-
       renderFamily();
     </script>
   </body>
