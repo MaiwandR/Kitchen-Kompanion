@@ -126,6 +126,7 @@
         justify-content: space-between;
         background: white;
         border-bottom: 1px solid var(--border-light);
+        z-index: 10;
       }
 
       .brand h1 {
@@ -1584,6 +1585,7 @@
         box-shadow: -1px -2px 25px 0px rgba(0, 0, 0, 0.1);
         -webkit-box-shadow: -1px -2px 25px 0px rgba(0, 0, 0, 0.1);
         -moz-box-shadow: -1px -2px 25px 0px rgba(0, 0, 0, 0.1);
+        z-index: 100;
       }
 
       i {
@@ -1610,7 +1612,7 @@
         color: var(--accent);
       }
 
-      i.icon-nav.home {
+      i.icon-nav {
         font-size: 40px;
       }
 
@@ -1638,26 +1640,26 @@
       }
 
       .nav-icon {
-        width: 24px;
-        height: 24px;
+        width: 40px;
+        height: 40px;
         position: relative;
       }
 
       .nav-icon.home::before {
         content: "🏠";
-        font-size: 20px;
+        font-size: 40px;
       }
       .nav-icon.recipes::before {
         content: "📖";
-        font-size: 20px;
+        font-size: 40px;
       }
       .nav-icon.inventory::before {
         content: "📦";
-        font-size: 20px;
+        font-size: 40px;
       }
       .nav-icon.account::before {
         content: "👤";
-        font-size: 20px;
+        font-size: 40px;
       }
 
       /* For screenshot - showing expanded view with 2 members */
@@ -1690,9 +1692,9 @@
         top: 0;
         left: 0;
         right: 0;
-        bottom: 72px;
+        bottom: 0px;
         background: var(--bg-primary);
-        z-index: 10;
+        z-index: 200;
         overflow-y: auto;
         padding: 0 var(--space-lg) var(--space-lg);
       }
@@ -2097,12 +2099,167 @@
         font-family: var(--font-sans);
         cursor: pointer;
       }
+
+      /* ── Recipes Tab Integration ── */
+      .recipes-panel {
+        display: none;
+        flex: 1;
+        overflow: hidden;
+        background: var(--bg-primary);
+      }
+      .recipes-panel.active {
+        display: flex;
+        flex-direction: row;
+      }
+      .recipes-panel .sidebar {
+        width: 140px; /* Slimmed slightly to fit well on mobile frames */
+        background: white;
+        border-right: 1px solid var(--border-light);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        scrollbar-width: none;
+      }
+      .recipes-panel .sidebar::-webkit-scrollbar { display: none; }
+      .recipes-panel .sidebar h2 {
+        padding: 16px 12px 8px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--text-tertiary);
+        opacity: 0.6;
+      }
+      .recipes-panel .category-header {
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+        user-select: none;
+      }
+      .recipes-panel .category-header:hover { background: #f1f5f9; }
+      .recipes-panel .sub-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        background: #fafafa;
+      }
+      .recipes-panel .category-item.open .sub-menu { max-height: 500px; }
+      .recipes-panel .category-item.open .bi-chevron-down { transform: rotate(180deg); }
+      .recipes-panel .sub-item {
+        padding: 10px 12px 10px 24px;
+        font-size: 0.8rem;
+        color: var(--text-tertiary);
+        position: relative;
+        width: 100%;
+        display: block;
+        cursor: pointer;
+        user-select: none;
+      }
+      .recipes-panel .sub-item:hover { background: #f1f5f9; color: var(--accent); }
+      .recipes-panel .sub-item.active-filter {
+        color: var(--accent);
+        font-weight: 800;
+        background: var(--accent-soft);
+      }
+      .recipes-panel .sub-item.active-filter::after {
+        content: "✓";
+        position: absolute;
+        right: 8px;
+      }
+      .recipes-panel .all-recipes-btn { cursor: pointer; user-select: none; }
+      .recipes-panel .all-recipes-btn.active-filter {
+        color: var(--accent);
+        background: var(--accent-soft);
+        font-weight: 800;
+      }
+      .recipes-panel .main-view {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        min-width: 0;
+      }
+      .recipes-panel .search-container { padding: 12px; }
+      .recipes-panel .search-bar { position: relative; }
+      .recipes-panel .search-bar input {
+        width: 100%;
+        padding: 10px 10px 10px 36px;
+        border-radius: 12px;
+        border: 1px solid var(--border-light);
+        outline: none;
+        font: inherit;
+        background: white;
+      }
+      .recipes-panel .search-bar i {
+        position: absolute;
+        left: 12px;
+        top: 10px;
+        color: var(--text-tertiary);
+        font-style: normal;
+      }
+      .recipes-panel .active-pills {
+        padding: 0 12px 8px;
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        min-height: 20px;
+      }
+      .recipes-panel .pill {
+        background: var(--accent);
+        color: white;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .recipes-panel .recipe-list-container {
+        flex: 1;
+        overflow-y: auto;
+        padding: 0 12px 20px;
+        scrollbar-width: none;
+      }
+      .recipes-panel .recipe-list-container::-webkit-scrollbar { display: none; }
+      .recipes-panel .recipe-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 12px;
+      }
+      .recipes-panel .recipe-card {
+        background: white;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-light);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+      }
+      .recipes-panel .recipe-color { height: 70px; width: 100%; }
+      .recipes-panel .recipe-body { padding: 8px; }
+      .recipes-panel .recipe-body h3 {
+        font-size: 0.85rem;
+        color: var(--text-primary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 2px;
+      }
+      .recipes-panel .meta-time { font-size: 0.75rem; color: var(--text-tertiary); }
+      .recipes-panel .c1 { background: #e0e7ff; } .recipes-panel .c2 { background: #dcfce7; }
+      .recipes-panel .c3 { background: #fef3c7; } .recipes-panel .c4 { background: #fee2e2; }
+      .recipes-panel .c5 { background: #e0f2fe; } .recipes-panel .c6 { background: #f3e8ff; }
+      .recipes-panel .c7 { background: #ffedd5; } .recipes-panel .c8 { background: #f1f5f9; }
     </style>
   </head>
   <body>
     <div class="phone-frame">
       <div class="screen">
-        <!-- Header with simplified alert icon -->
         <header class="header">
           <div class="brand">
             <h1>Kitchen Kompanion</h1>
@@ -2127,13 +2284,11 @@
           </div>
         </header>
 
-        <!-- Main Content -->
         <main
           class="main-content tab-panel active"
           id="mainContent"
           data-tab-panel="home"
         >
-          <!-- Welcome -->
           <div class="welcome-section">
             <h2 class="welcome-title">Good evening, family! 👋</h2>
             <p class="welcome-subtitle">Your kitchen hub</p>
@@ -2178,23 +2333,21 @@
             </div>
           </section>
 
-          <!-- Alert Chip - visual only -->
           <div class="alert-chip">
             <span class="alert-dot"></span>
             <span>⚠️ 1 item expiring soon • Bacon (3 days)</span>
           </div>
 
-          <!-- Suggested Meal Card -->
           <section class="card home-card">
             <div class="card-header">
               <h2>🍽️ Tonight's suggested meal</h2>
-              <span class="from-recipes-link">from Recipes</span>
+              <span class="from-recipes-link" onclick="switchTab('recipes')" style="cursor: pointer;">from Recipes</span>
             </div>
 
             <div class="meal-card">
               <div class="meal-container">
                 <div class="meal-thumbnail">
-                  <img src="steak.jpeg" alt="Steak & mashed potatoes" />
+                  <img src="steak.jpeg" alt="Steak & mashed potatoes" onerror="this.style.display='none'"/>
                 </div>
 
                 <div class="meal-details">
@@ -2461,8 +2614,101 @@
             aria-live="polite"
           ></div>
         </section>
+        
+        <section class="tab-panel recipes-panel" id="recipesPanel" data-tab-panel="recipes">
+          <aside class="sidebar">
+            <h2>Filters</h2>
+            <div class="all-recipes-btn active-filter" id="allRecipesBtn" onclick="clearAllFilters()">
+              <div class="category-header"><span>🏠 All Recipes</span></div>
+            </div>
+            
+            <div class="category-item">
+              <div class="category-header" onclick="toggleSidebar(this)"><span>🥩 Proteins</span> <i class="bi bi-chevron-down"></i></div>
+              <div class="sub-menu" data-cat="protein">
+                <div class="sub-item" onclick="toggleFilter('protein', 'chicken', this)">Chicken</div>
+                <div class="sub-item" onclick="toggleFilter('protein', 'beef', this)">Beef</div>
+                <div class="sub-item" onclick="toggleFilter('protein', 'seafood', this)">Seafood</div>
+              </div>
+            </div>
 
-        <!-- Cooking Screen -->
+            <div class="category-item">
+              <div class="category-header" onclick="toggleSidebar(this)"><span>🍳 Meals</span> <i class="bi bi-chevron-down"></i></div>
+              <div class="sub-menu" data-cat="meal">
+                <div class="sub-item" onclick="toggleFilter('meal', 'breakfast', this)">Breakfast</div>
+                <div class="sub-item" onclick="toggleFilter('meal', 'lunch', this)">Lunch</div>
+                <div class="sub-item" onclick="toggleFilter('meal', 'dinner', this)">Dinner</div>
+              </div>
+            </div>
+
+            <div class="category-item">
+              <div class="category-header" onclick="toggleSidebar(this)"><span>🌍 Cuisines</span> <i class="bi bi-chevron-down"></i></div>
+              <div class="sub-menu" data-cat="cuisine">
+                <div class="sub-item" onclick="toggleFilter('cuisine', 'italian', this)">Italian</div>
+                <div class="sub-item" onclick="toggleFilter('cuisine', 'mexican', this)">Mexican</div>
+                <div class="sub-item" onclick="toggleFilter('cuisine', 'asian', this)">Asian</div>
+              </div>
+            </div>
+
+            <div class="category-item">
+              <div class="category-header" onclick="toggleSidebar(this)"><span>⏱️ Time</span> <i class="bi bi-chevron-down"></i></div>
+              <div class="sub-menu" data-cat="time">
+                <div class="sub-item" onclick="toggleFilter('time', '15min', this)">Under 15 Min</div>
+                <div class="sub-item" onclick="toggleFilter('time', '30min', this)">Under 30 Min</div>
+                <div class="sub-item" onclick="toggleFilter('time', 'slow-cooker', this)">Slow Cooker</div>
+              </div>
+            </div>
+          </aside>
+
+          <div class="main-view">
+            <div class="search-container">
+              <div class="search-bar"><i class="bi bi-search"></i><input type="text" id="recipeSearchInput" onkeyup="applyFilters()" placeholder="Search recipes..."></div>
+            </div>
+
+            <div class="active-pills" id="activePills"></div>
+
+            <div class="recipe-list-container">
+              <div class="recipe-grid" id="recipeGrid">
+                <div class="recipe-card" data-tags="seafood italian dinner 30min" onclick="openCookingScreen()">
+                  <div class="recipe-color c1"></div><div class="recipe-body"><h3>Shrimp Scampi</h3><span class="meta-time">⏱️ 20m</span></div>
+                </div>
+                <div class="recipe-card" data-tags="chicken mexican lunch 15min" onclick="openCookingScreen()">
+                  <div class="recipe-color c2"></div><div class="recipe-body"><h3>Chicken Tacos</h3><span class="meta-time">⏱️ 15m</span></div>
+                </div>
+                <div class="recipe-card" data-tags="chicken asian dinner 15min" onclick="openCookingScreen()">
+                  <div class="recipe-color c3"></div><div class="recipe-body"><h3>Sesame Chicken</h3><span class="meta-time">⏱️ 12m</span></div>
+                </div>
+                <div class="recipe-card" data-tags="beef italian dinner slow-cooker" onclick="openCookingScreen()">
+                  <div class="recipe-color c4"></div><div class="recipe-body"><h3>Beef Ragu</h3><span class="meta-time">⏱️ 6h</span></div>
+                </div>
+                <div class="recipe-card" data-tags="seafood italian lunch 30min" onclick="openCookingScreen()">
+                  <div class="recipe-color c5"></div><div class="recipe-body"><h3>Lemon Cod</h3><span class="meta-time">⏱️ 25m</span></div>
+                </div>
+                <div class="recipe-card" data-tags="beef mexican dinner 30min" onclick="openCookingScreen()">
+                  <div class="recipe-color c6"></div><div class="recipe-body"><h3>Beef Enchiladas</h3><span class="meta-time">⏱️ 30m</span></div>
+                </div>
+                <div class="recipe-card" data-tags="chicken breakfast 15min" onclick="openCookingScreen()">
+                  <div class="recipe-color c7"></div><div class="recipe-body"><h3>Breakfast Burrito</h3><span class="meta-time">⏱️ 10m</span></div>
+                </div>
+                <div class="recipe-card" data-tags="seafood asian dinner 15min" onclick="openCookingScreen()">
+                  <div class="recipe-color c8"></div><div class="recipe-body"><h3>Miso Salmon</h3><span class="meta-time">⏱️ 15m</span></div>
+                </div>
+                <div class="recipe-card" data-tags="beef lunch 15min" onclick="openCookingScreen()">
+                  <div class="recipe-color c1"></div><div class="recipe-body"><h3>Steak Salad</h3><span class="meta-time">⏱️ 15m</span></div>
+                </div>
+                <div class="recipe-card" data-tags="asian breakfast 15min" onclick="openCookingScreen()">
+                  <div class="recipe-color c2"></div><div class="recipe-body"><h3>Congee Bowl</h3><span class="meta-time">⏱️ 15m</span></div>
+                </div>
+                <div class="recipe-card" data-tags="mexican breakfast 15min" onclick="openCookingScreen()">
+                  <div class="recipe-color c3"></div><div class="recipe-body"><h3>Huevos Rancheros</h3><span class="meta-time">⏱️ 15m</span></div>
+                </div>
+                <div class="recipe-card" data-tags="beef slow-cooker dinner" onclick="openCookingScreen()">
+                  <div class="recipe-color c4"></div><div class="recipe-body"><h3>Pot Roast</h3><span class="meta-time">⏱️ 8h</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section
           class="cooking-screen"
           id="cookingScreen"
@@ -2579,6 +2825,7 @@
             </button>
           </section>
         </section>
+        
         <section
           class="family-screen"
           id="familyScreen"
@@ -2863,7 +3110,6 @@
           </div>
         </div>
 
-        <!-- Bottom Navigation -->
         <nav class="bottom-nav">
           <div
             class="icon-rav nav-tab active-tab"
@@ -2878,7 +3124,7 @@
             id="tab-recipes"
             onclick="switchTab('recipes')"
           >
-            <i class="icon-nav home">&#x1F4D6;</i>
+            <i class="icon-nav recipes">&#x1F4D6;</i>
             <span>Recipes</span>
           </div>
           <div
@@ -2886,7 +3132,7 @@
             id="tab-inventory"
             onclick="switchTab('inventory')"
           >
-            <i class="icon-nav home">&#x1F4E6;</i>
+            <i class="icon-nav inventory">&#x1F4E6;</i>
             <span>Inventory</span>
           </div>
           <div
@@ -2894,7 +3140,7 @@
             id="tab-family"
             onclick="switchTab('family')"
           >
-            <i class="icon-nav home">&#x1F465;</i>
+            <i class="icon-nav account">&#x1F465;</i>
             <span>Family</span>
           </div>
         </nav>
@@ -3873,36 +4119,40 @@
         }
       }
 
+      // INTEGRATION NOTE: Overwritten switchTab to correctly map to the new recipesPanel
+      // instead of hard-redirecting to 'home' like the initial starter file did.
       function switchTab(tab) {
         const mainContent = document.getElementById("mainContent");
         const inventoryPanel = document.getElementById("inventoryPanel");
+        const recipesPanel = document.getElementById("recipesPanel");
         const familyScreen = document.getElementById("familyScreen");
         const cookingScreen = document.getElementById("cookingScreen");
+        
         activeTab = tab;
         cookingScreen.classList.remove("active");
-
-        if (tab === "recipes") {
-          showStatus(
-            "Recipes tab is next. Inventory remains available for quick updates.",
-            "info",
-          );
-          tab = "home";
-          activeTab = tab;
-        }
 
         if (tab === "family") {
           mainContent.classList.remove("active");
           inventoryPanel.classList.remove("active");
+          if(recipesPanel) recipesPanel.classList.remove("active");
           familyScreen.classList.add("family-screen-active");
         } else if (tab === "inventory") {
           mainContent.classList.remove("active");
           inventoryPanel.classList.add("active");
+          if(recipesPanel) recipesPanel.classList.remove("active");
+          familyScreen.classList.remove("family-screen-active");
+        } else if (tab === "recipes") {
+          mainContent.classList.remove("active");
+          inventoryPanel.classList.remove("active");
+          if(recipesPanel) recipesPanel.classList.add("active");
           familyScreen.classList.remove("family-screen-active");
         } else {
           mainContent.classList.add("active");
           inventoryPanel.classList.remove("active");
+          if(recipesPanel) recipesPanel.classList.remove("active");
           familyScreen.classList.remove("family-screen-active");
         }
+        
         document
           .querySelectorAll(".nav-tab")
           .forEach((t) => t.classList.remove("active-tab"));
@@ -3984,6 +4234,84 @@
           if (e.target === this) closeMemberModal();
         });
 
+      // --- Recipes Tab JS Filtering Logic Integration ---
+      let filters = { protein: [], meal: [], cuisine: [], time: [] };
+
+      function toggleSidebar(header) {
+        const parent = header.parentElement;
+        const isOpen = parent.classList.contains('open');
+        document.querySelectorAll('.recipes-panel .category-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) parent.classList.add('open');
+      }
+
+      function toggleFilter(category, tag, element) {
+        const index = filters[category].indexOf(tag);
+        if (index > -1) {
+          filters[category].splice(index, 1);
+          element.classList.remove('active-filter');
+        } else {
+          filters[category].push(tag);
+          element.classList.add('active-filter');
+        }
+        
+        const totalActive = Object.values(filters).flat().length;
+        document.getElementById('allRecipesBtn').classList.toggle('active-filter', totalActive === 0);
+        updatePills();
+        applyFilters();
+      }
+
+      function clearAllFilters() {
+        filters = { protein: [], meal: [], cuisine: [], time: [] };
+        document.querySelectorAll('.recipes-panel .sub-item').forEach(el => el.classList.remove('active-filter'));
+        document.getElementById('allRecipesBtn').classList.add('active-filter');
+        updatePills();
+        applyFilters();
+      }
+
+      function updatePills() {
+        const container = document.getElementById('activePills');
+        if(!container) return;
+        container.innerHTML = '';
+        Object.keys(filters).forEach(cat => {
+          filters[cat].forEach(tag => {
+            const pill = document.createElement('div');
+            pill.className = 'pill';
+            pill.innerHTML = `${tag} <i class="bi bi-x-circle-fill" style="cursor:pointer" onclick="removeTag('${cat}', '${tag}')"></i>`;
+            container.appendChild(pill);
+          });
+        });
+      }
+
+      function removeTag(cat, tag) {
+        const items = document.querySelectorAll(`[data-cat="${cat}"] .sub-item`);
+        items.forEach(item => {
+          if (item.getAttribute('onclick').includes(`'${tag}'`)) {
+            toggleFilter(cat, tag, item);
+          }
+        });
+      }
+
+      function applyFilters() {
+        const searchInput = document.getElementById('recipeSearchInput');
+        if(!searchInput) return;
+        const search = searchInput.value.toLowerCase();
+        const cards = document.querySelectorAll('#recipeGrid .recipe-card');
+        
+        cards.forEach(card => {
+          const title = card.querySelector('h3').innerText.toLowerCase();
+          const tags = card.getAttribute('data-tags');
+          
+          const matchesFilters = Object.keys(filters).every(cat => {
+            if (filters[cat].length === 0) return true;
+            return filters[cat].some(tag => tags.includes(tag));
+          });
+
+          const matchesSearch = title.includes(search);
+          card.style.display = (matchesFilters && matchesSearch) ? "flex" : "none";
+        });
+      }
+
+      // Init app calls
       bindInventoryEvents();
       renderInventory();
       renderShoppingList();
