@@ -2987,6 +2987,16 @@
           </div>
 
           <section class="cooking-card" style="flex: 1; display: flex; flex-direction: column;">
+            <div style="margin-bottom: var(--space-lg);">
+              <label style="font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 6px; color: var(--text-secondary);">Time available</label>
+              <select id="pantryTimeLimit" class="input-control">
+                <option value="any">Any amount of time</option>
+                <option value="15min">Under 15 minutes</option>
+                <option value="30min">Under 30 minutes</option>
+                <option value="60min">Under 1 hour</option>
+              </select>
+            </div>
+
             <h3 style="margin-bottom: 12px;">Your Inventory</h3>
             <div class="shopping-list" id="pantrySelectionList" style="padding: 0; flex: 1; overflow-y: auto;">
               </div>
@@ -4529,21 +4539,36 @@
         if (appState.inventory.length === 0) {
           listContainer.innerHTML = '<p class="empty-state">Your inventory is empty.</p>';
         } else {
-          // Generate checkboxes for everything currently in inventory
+          // Generate checkboxes and quantity inputs for inventory items
           listContainer.innerHTML = appState.inventory.map(item => `
-            <div class="shopping-item" style="margin-bottom: 8px;">
-              <div class="shopping-row">
-                <label style="cursor: pointer; width: 100%;">
-                  <input type="checkbox" class="pantry-checkbox" value="${escapeHtml(item.name)}" style="width: 18px; height: 18px;" />
-                  <div class="shopping-item-main" style="margin-left: 12px;">
+            <div class="shopping-item" style="margin-bottom: 8px; align-items: center; gap: 8px;">
+              <div class="shopping-row" style="flex: 1;">
+                <label style="cursor: pointer; display: flex; align-items: center; width: 100%;">
+                  <input type="checkbox" class="pantry-checkbox" id="cb-${item.id}" value="${escapeHtml(item.name)}" 
+                        style="width: 18px; height: 18px; flex-shrink: 0;" 
+                        onchange="document.getElementById('qty-${item.id}').disabled = !this.checked;" />
+                  <div class="shopping-item-main" style="margin-left: 12px; flex: 1;">
                     <strong>${escapeHtml(item.name)}</strong>
-                    <div class="inventory-item-meta">${formatQty(item.quantity)} ${escapeHtml(item.unit)}</div>
+                    <div class="inventory-item-meta">In stock: ${formatQty(item.quantity)}</div>
                   </div>
                 </label>
+              </div>
+              
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <input type="number" id="qty-${item.id}" class="input-control pantry-qty" 
+                      min="0.01" max="${item.quantity}" step="any" value="1" disabled 
+                      style="width: 65px; padding: 6px; text-align: center; font-weight: 600;" />
+                <span style="font-size: 0.8rem; color: var(--text-secondary); width: 35px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  ${escapeHtml(item.unit)}
+                </span>
               </div>
             </div>
           `).join('');
         }
+
+        // Reset the time dropdown every time it opens
+        const timeSelect = document.getElementById('pantryTimeLimit');
+        if(timeSelect) timeSelect.value = "any";
 
         document.getElementById('pantryChefScreen').classList.add('active');
       }
@@ -4553,20 +4578,35 @@
       }
 
       function findRecipeFromSelection() {
-        const selected = document.querySelectorAll('.pantry-checkbox:checked');
-        if (selected.length === 0) {
+        const selectedBoxes = document.querySelectorAll('.pantry-checkbox:checked');
+        if (selectedBoxes.length === 0) {
           showStatus("Please select at least one ingredient.", "warning");
           return;
         }
+        const timeLimit = document.getElementById('pantryTimeLimit').value;
+        
+        // Extract the ingredients and their quantities (ready for backend/logic processing)
+        const selectedIngredients = Array.from(selectedBoxes).map(cb => {
+          const id = cb.id.replace('cb-', '');
+          const qtyInput = document.getElementById(`qty-${id}`);
+          return {
+            name: cb.value,
+            quantity: qtyInput ? qtyInput.value : 1
+          };
+        });
+
         closePantryChef();
+
         switchTab('recipes');
+
         const searchInput = document.getElementById('recipeSearchInput');
         if (searchInput) {
           searchInput.value = "Steak & mashed potatoes";
           applyFilters(); 
         }
 
-        showStatus("Here are the recipes you can make!", "success");
+        let timeMsg = timeLimit !== 'any' ? ` under ${timeLimit.replace('min', ' minutes')}` : '';
+        showStatus(`Found recipes using ${selectedIngredients.length} ingredient(s)${timeMsg}!`, "success");
       }
 
       // Init app calls
