@@ -2805,6 +2805,9 @@
           <div class="main-view">
             <div class="search-container">
               <div class="search-bar"><i class="bi bi-search"></i><input type="text" id="recipeSearchInput" onkeyup="applyFilters()" placeholder="Search recipes..."></div>
+              <button class="btn-primary" type="button" onclick="openPantryChef()" style="margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
+                <i class="bi bi-magic"></i> Find recipe from inventory
+              </button>
             </div>
 
             <div class="active-pills" id="activePills"></div>
@@ -2872,8 +2875,8 @@
           </div>
 
           <div class="cooking-hero">
-            <div class="cooking-image-holder">
-              <span>Food image</span>
+            <div class="cooking-image-holder" style="padding: 0; border: none; overflow: hidden;">
+              <img src="steak.jpeg" alt="Steak & mashed potatoes" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'"/>
             </div>
 
             <div class="cooking-hero-text">
@@ -2968,6 +2971,28 @@
               onclick="completeSuggestedRecipe()"
             >
               Complete recipe and deduct inventory
+            </button>
+          </section>
+        </section>
+
+        <section class="cooking-screen" id="pantryChefScreen" aria-labelledby="pantry-heading">
+          <div class="cooking-header">
+            <button class="back-btn" type="button" onclick="closePantryChef()">← Back</button>
+            <span class="cooking-badge">Pantry Chef</span>
+          </div>
+
+          <div class="cooking-hero" style="flex-direction: column; gap: 8px; padding: 16px;">
+            <h2 id="pantry-heading">What do you want to use?</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Select ingredients from your inventory to find matching recipes.</p>
+          </div>
+
+          <section class="cooking-card" style="flex: 1; display: flex; flex-direction: column;">
+            <h3 style="margin-bottom: 12px;">Your Inventory</h3>
+            <div class="shopping-list" id="pantrySelectionList" style="padding: 0; flex: 1; overflow-y: auto;">
+              </div>
+            
+            <button class="btn-primary" type="button" onclick="findRecipeFromSelection()" style="margin-top: auto;">
+              Find matching recipe
             </button>
           </section>
         </section>
@@ -4444,6 +4469,12 @@
         filters = { protein: [], meal: [], cuisine: [], time: [] };
         document.querySelectorAll('.recipes-panel .sub-item').forEach(el => el.classList.remove('active-filter'));
         document.getElementById('allRecipesBtn').classList.add('active-filter');
+        
+        const searchInput = document.getElementById('recipeSearchInput');
+        if (searchInput) {
+          searchInput.value = '';
+        }
+
         updatePills();
         applyFilters();
       }
@@ -4489,6 +4520,53 @@
           const matchesSearch = title.includes(search);
           card.style.display = (matchesFilters && matchesSearch) ? "flex" : "none";
         });
+      }
+
+      // --- Pantry Chef Logic ---
+      function openPantryChef() {
+        const listContainer = document.getElementById('pantrySelectionList');
+        
+        if (appState.inventory.length === 0) {
+          listContainer.innerHTML = '<p class="empty-state">Your inventory is empty.</p>';
+        } else {
+          // Generate checkboxes for everything currently in inventory
+          listContainer.innerHTML = appState.inventory.map(item => `
+            <div class="shopping-item" style="margin-bottom: 8px;">
+              <div class="shopping-row">
+                <label style="cursor: pointer; width: 100%;">
+                  <input type="checkbox" class="pantry-checkbox" value="${escapeHtml(item.name)}" style="width: 18px; height: 18px;" />
+                  <div class="shopping-item-main" style="margin-left: 12px;">
+                    <strong>${escapeHtml(item.name)}</strong>
+                    <div class="inventory-item-meta">${formatQty(item.quantity)} ${escapeHtml(item.unit)}</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        document.getElementById('pantryChefScreen').classList.add('active');
+      }
+
+      function closePantryChef() {
+        document.getElementById('pantryChefScreen').classList.remove('active');
+      }
+
+      function findRecipeFromSelection() {
+        const selected = document.querySelectorAll('.pantry-checkbox:checked');
+        if (selected.length === 0) {
+          showStatus("Please select at least one ingredient.", "warning");
+          return;
+        }
+        closePantryChef();
+        switchTab('recipes');
+        const searchInput = document.getElementById('recipeSearchInput');
+        if (searchInput) {
+          searchInput.value = "Steak & mashed potatoes";
+          applyFilters(); 
+        }
+
+        showStatus("Here are the recipes you can make!", "success");
       }
 
       // Init app calls
